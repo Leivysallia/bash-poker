@@ -227,8 +227,8 @@ echo "$flag"
 
 ## DEBUG
 
-echo "$flush" "$pair1" "$pair2" "$pair3" "$pair4" "$three1" "$three2" "$three3" "$straight" "$four1" "$four2" | fmt -1 > debug.test
+##	echo "$flush" "$pair1" "$pair2" "$pair3" "$pair4" "$three1" "$three2" "$three3" "$straight" "$four1" "$four2" | fmt -1 > debug.test
 
 ## END DEBUG
 
-##	clean
+clean
