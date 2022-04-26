@@ -1,0 +1,129 @@
+#!/bin/bash
+
+start () {
+
+  touch graveyard exile library hand discard index num class
+  cat /dev/null > graveyard > exile > library > hand > discard > index > num > class
+  cat codex > library
+
+}
+
+
+
+ruffle () {
+touch graveyard exile library hand discard field
+sort -n -o graveyard graveyard
+sort -n -o exile exile
+sort -n -o library library
+sort -n -o hand hand
+sort -n -o discard discard
+sort -n -o num num
+sort -o class class
+}
+
+
+phase () {
+
+cat hand > discard
+cat library >> discard
+
+ruffle
+
+uniq -u discard > library
+cat /dev/null > discard
+
+ruffle
+
+}
+
+deal () {
+
+sort -Ru library | head -5 > hand
+
+}
+
+mull () {
+
+iter=1
+
+while read -r line; do
+  echo ""$iter": "$line""
+  iter=$((iter + 1)) 
+done < hand > iterhand
+
+cat iterhand
+
+
+}
+
+calc () {
+
+sort -n hand |head -1 |tail -1 > card1
+sort -n hand |head -2 |tail -1 > card2
+sort -n hand |head -3 |tail -1 > card3
+sort -n hand |head -4 |tail -1 > card4
+sort -n hand |head -5 |tail -1 > card5
+
+read -r num1 foo class1 < card1
+read -r num2 foo class2 < card2
+read -r num3 foo class3 < card3
+read -r num4 foo class4 < card4
+read -r num5 foo class5 < card5
+
+echo $class1 $class2 $class3 $class4 $class5 | fmt -1 | uniq | wc -l > flush
+
+echo $num1 $num2 | fmt -1 | uniq | wc -l > pair1
+echo $num2 $num3 | fmt -1 | uniq | wc -l > pair2
+echo $num3 $num4 | fmt -1 | uniq | wc -l > pair3
+echo $num4 $num5 | fmt -1 | uniq | wc -l > pair4
+
+echo $num1 $num2 $num3 | fmt -1 | uniq | wc -l > three1
+echo $num2 $num3 $num4 | fmt -1 | uniq | wc -l > three2
+echo $num3 $num4 $num5 | fmt -1 | uniq | wc -l > three3
+
+echo $num1 $((num2 - 1)) $((num3 - 2)) $((num4 - 3)) $((num5 - 4)) | fmt -1 | uniq | wc -l > straight
+
+echo $num1 $num2 $num3 $num4 | fmt -1 | uniq | wc -l > four1
+echo $num2 $num3 $num4 $num5 | fmt -1 | uniq | wc -l > four2
+
+flush=$(cat flush)
+
+pair1=$(cat pair1)
+pair2=$(cat pair2)
+pair3=$(cat pair3)
+pair4=$(cat pair4)
+
+three1=$(cat three1)
+three2=$(cat three2)
+three3=$(cat three3)
+
+straight=$(cat straight)
+
+four1=$(cat four1)
+four2=$(cat four2)
+
+}
+
+clean () {
+
+  touch graveyard exile library hand discard index num class field iterhand
+  rm graveyard exile library hand discard index num class field iterhand
+
+rm card1
+rm card2
+rm card3
+rm card4
+rm card5
+rm flush
+rm pair1
+rm pair2
+rm pair3
+rm pair4
+rm three1
+rm three2
+rm three3
+rm straight
+rm four1
+rm four2
+
+}
