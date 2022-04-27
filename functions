@@ -1,6 +1,64 @@
 #!/bin/bash
 
-start () {
+
+codex () {
+echo "1 of Spades
+2 of Spades
+3 of Spades
+4 of Spades
+5 of Spades
+6 of Spades
+7 of Spades
+8 of Spades
+9 of Spades
+10 of Spades
+11 of Spades
+12 of Spades
+13 of Spades
+13 of Diamonds
+12 of Diamonds
+11 of Diamonds
+10 of Diamonds
+9 of Diamonds
+8 of Diamonds
+7 of Diamonds
+6 of Diamonds
+5 of Diamonds
+4 of Diamonds
+3 of Diamonds
+2 of Diamonds
+1 of Diamonds
+1 of Clubs
+2 of Clubs
+3 of Clubs
+4 of Clubs
+5 of Clubs
+6 of Clubs
+7 of Clubs
+8 of Clubs
+9 of Clubs
+10 of Clubs
+11 of Clubs
+12 of Clubs
+13 of Clubs
+13 of Hearts
+12 of Hearts
+11 of Hearts
+10 of Hearts
+9 of Hearts
+8 of Hearts
+7 of Hearts
+6 of Hearts
+5 of Hearts
+4 of Hearts
+3 of Hearts
+2 of Hearts
+1 of Hearts" > codex
+
+}
+
+
+debug_start () {
 
   touch graveyard exile library hand discard index num class
   cat /dev/null > graveyard > exile > library > hand > discard > index > num > class
@@ -8,7 +66,14 @@ start () {
 
 }
 
+start () {
 
+  codex
+  touch graveyard exile library hand discard
+  cat /dev/null > graveyard > exile > library > hand > discard
+  cat codex > library
+
+}
 
 ruffle () {
 touch graveyard exile library hand discard field
@@ -17,8 +82,6 @@ sort -n -o exile exile
 sort -n -o library library
 sort -n -o hand hand
 sort -n -o discard discard
-sort -n -o num num
-sort -o class class
 }
 
 
@@ -42,7 +105,7 @@ sort -Ru library | head -5 > hand
 
 }
 
-mull () {
+debug_mull () {
 
 iter=1
 
@@ -56,7 +119,21 @@ cat iterhand
 
 }
 
-calc () {
+mull () {
+
+iter=1
+
+while read -r line; do
+  echo ""$iter": "$line""
+  iter=$((iter + 1)) 
+done < hand
+
+##  cat iterhand
+
+
+}
+
+calc_files () {
 
 sort -n hand |head -1 |tail -1 > card1
 sort -n hand |head -2 |tail -1 > card2
@@ -104,11 +181,69 @@ four2=$(cat four2)
 
 }
 
+var () {
+
+card1=$(sort -n hand |head -1 |tail -1)
+card2=$(sort -n hand |head -2 |tail -1)
+card3=$(sort -n hand |head -3 |tail -1) 
+card4=$(sort -n hand |head -4 |tail -1)
+card5=$(sort -n hand |head -5 |tail -1)
+
+num1=$(sort -n hand |head -1 |tail -1 |sed 's/\s.*//')
+num2=$(sort -n hand |head -2 |tail -1 |sed 's/\s.*//')
+num3=$(sort -n hand |head -3 |tail -1 |sed 's/\s.*//') 
+num4=$(sort -n hand |head -4 |tail -1 |sed 's/\s.*//')
+num5=$(sort -n hand |head -5 |tail -1 |sed 's/\s.*//')
+
+class1=$(sort -n hand |head -1 |tail -1 |sed 's/.*\s//')
+class2=$(sort -n hand |head -2 |tail -1 |sed 's/.*\s//')
+class3=$(sort -n hand |head -3 |tail -1 |sed 's/.*\s//')
+class4=$(sort -n hand |head -4 |tail -1 |sed 's/.*\s//')
+class5=$(sort -n hand |head -5 |tail -1 |sed 's/.*\s//')
+
+}
+
+
+calc () {
+
+var
+
+flush=$(echo $class1 $class2 $class3 $class4 $class5 | fmt -1 | uniq | wc -l)
+
+pair1=$(echo $num1 $num2 | fmt -1 | uniq | wc -l)
+pair2=$(echo $num2 $num3 | fmt -1 | uniq | wc -l)
+pair3=$(echo $num3 $num4 | fmt -1 | uniq | wc -l)
+pair4=$(echo $num4 $num5 | fmt -1 | uniq | wc -l)
+
+three1=$(echo $num1 $num2 $num3 | fmt -1 | uniq | wc -l)
+three2=$(echo $num2 $num3 $num4 | fmt -1 | uniq | wc -l)
+three3=$(echo $num3 $num4 $num5 | fmt -1 | uniq | wc -l)
+
+straight=$(echo $num1 $((num2 - 1)) $((num3 - 2)) $((num4 - 3)) $((num5 - 4)) | fmt -1 | uniq | wc -l)
+
+four1=$(echo $num1 $num2 $num3 $num4 | fmt -1 | uniq | wc -l)
+four2=$(echo $num2 $num3 $num4 $num5 | fmt -1 | uniq | wc -l)
+
+}
+
+
 clean () {
 
-  touch graveyard exile library hand discard index num class field iterhand
-  rm graveyard exile library hand discard index num class field iterhand
+  touch graveyard exile library hand discard field 
+  rm graveyard exile library hand discard field
 
+}
+
+debug_clean () {
+
+touch graveyard exile library hand discard field
+rm num 
+rm field
+rm discard
+rm graveyard
+rm exile
+rm library
+rm hand
 rm card1
 rm card2
 rm card3

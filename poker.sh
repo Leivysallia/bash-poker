@@ -82,18 +82,7 @@ echo $'\n'
 
 mull
 
-while read -r num fo class; do
-	echo "$num" >> num
-	echo "$class" >> class
-done < hand
-
 ruffle
-
-read -r num1 num2 num3 num4 num5 < num
-read -r class1 class2 class3 class4 class5 < class
-
-ruffle
-
 
 calc
 
@@ -230,5 +219,12 @@ echo "$flag"
 ##	echo "$flush" "$pair1" "$pair2" "$pair3" "$pair4" "$three1" "$three2" "$three3" "$straight" "$four1" "$four2" | fmt -1 > debug.test
 
 ## END DEBUG
+
+## DEBUG
+##	calc_files
+##	echo "$flush" "$pair1" "$pair2" "$pair3" "$pair4" "$three1" "$three2" "$three3" "$straight" "$four1" "$four2" | fmt -1 > debug.files.test
+
+## END DEBUG
+
 
 clean
