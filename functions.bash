@@ -1,5 +1,13 @@
 #!/bin/bash
 
+freshstart () {
+
+clear
+clear
+clear
+
+}
+
 dex () {
 
 dex=$(( dex + 1 ))
@@ -8,7 +16,7 @@ dex=$(( dex + 1 ))
 
 ruffle () {
 
-IFS=$'\n' mchand=($(sort -nr <<<"${mchand[*]}"))
+IFS=$'\n' mchand=($(sort -n <<<"${mchand[*]}"))
 unset IFS
 
 }
@@ -133,6 +141,12 @@ straight=$(echo $num1 $((num2 - 1)) $((num3 - 2)) $((num4 - 3)) $((num5 - 4)) | 
 four1=$(echo $num1 $num2 $num3 $num4 | fmt -1 | uniq | wc -l)
 four2=$(echo $num2 $num3 $num4 $num5 | fmt -1 | uniq | wc -l)
 
+display[0]=":  "
+display[1]=":  "
+display[2]=":  "
+display[3]=":  "
+display[4]=":  "
+
 }
 
 iswin () {
@@ -143,8 +157,13 @@ calc
 
 if [[ "$flush" -eq 1 ]]; then
 	flush=1
-else
-	flush=0
+display[0]=": +"
+display[1]=": +"
+display[2]=": +"
+display[3]=": +"
+display[4]=": +"
+##else
+##	flush=0
 fi
 
 ## END FLUSH CODE
@@ -153,22 +172,26 @@ fi
 
 if [[ "$pair1" -eq 1 ]] ; then
     flag=Pair
-
+display[0]=": +"
+display[1]=": +"
 fi
 
 if [[ "$pair2" -eq 1 ]] ; then
     flag=Pair
-
+display[1]=": +"
+display[2]=": +"
 fi
 
 if [[ "$pair3" -eq 1 ]] ; then
     flag=Pair
-
+display[3]=": +"
+display[2]=": +"
 fi
 
 if [[ "$pair4" -eq 1 ]] ; then
     flag=Pair
-
+display[3]=": +"
+display[4]=": +"
 fi
 ## END PAIR CODE
 
@@ -209,17 +232,23 @@ fi
 
 if [[ "$three1" -eq 1 ]]; then
     flag="Three of a Kind"
- 
+display[0]=": +"
+display[1]=": +"
+display[2]=": +"
 fi
 
 if [[ "$three2" -eq 1 ]]; then
     flag="Three of a Kind" 
-   
+display[3]=": +"
+display[1]=": +"
+display[2]=": +"
 fi
 
 if [[ "$three3" -eq 1 ]]; then
     flag="Three of a Kind"
-
+display[3]=": +"
+display[4]=": +"
+display[2]=": +"
 fi
 ## END THREE OF A KIND CODE
 
@@ -227,6 +256,11 @@ fi
 
 if [[ "$straight" -eq 1 ]]; then
 	straight=1
+display[3]=": +"
+display[4]=": +"
+display[0]=": +"
+display[1]=": +"
+display[2]=": +"
 fi
 ## END STRAIGHT CODE
 
@@ -246,12 +280,18 @@ fi
 ## FOUR OF A KIND CODE
 if [[ "$four1" -eq 1 ]] ; then
     flag="Four of a Kind"
-
+display[0]=": +"
+display[1]=": +"
+display[2]=": +"
+display[3]=": +"
 fi
 
 if [[ "$four2" -eq 1 ]] ; then
     flag="Four of a Kind"
-
+display[4]=": +"
+display[1]=": +"
+display[2]=": +"
+display[3]=": +"
 fi
 ## END FOUR OF A KIND CODE
 
@@ -270,12 +310,13 @@ echo "$flag"
 
 render () {
 
-echo "1::|""${mchand[0]}"
-echo "2::|""${mchand[1]}"
-echo "3::|""${mchand[2]}"
-echo "4::|""${mchand[3]}"
-echo "5::|""${mchand[4]}"
-
 iswin
+echo ""
+
+echo "1""${display[0]}""${mchand[0]}"
+echo "2""${display[1]}""${mchand[1]}"
+echo "3""${display[2]}""${mchand[2]}"
+echo "4""${display[3]}""${mchand[3]}"
+echo "5""${display[4]}""${mchand[4]}"
 
 }

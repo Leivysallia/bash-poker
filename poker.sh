@@ -5,6 +5,8 @@ clear
 source functions.bash
 source vars.bash
 
+freshstart
+
 flag="HIGH"
 
 iter=51

@@ -5,7 +5,7 @@ dex=0
 one=-1
 two=-1
 three=-1
-
+flush=0
 
 codex[0]="1:Spades"
 codex[1]="2:Spades"
@@ -165,3 +165,9 @@ library[48]="4 of Hearts"
 library[49]="3 of Hearts"
 library[50]="2 of Hearts"
 library[51]="1 of Hearts"
+
+display[0]=":  "
+display[1]=":  "
+display[2]=":  "
+display[3]=":  "
+display[4]=":  "
