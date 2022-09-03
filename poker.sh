@@ -5,16 +5,7 @@ clear
 source functions.bash
 source vars.bash
 
-freshstart
 
-shuffle
+##	debug_game
 
-deal
-
-render
-
-mull
-
-render
-
-sleep 1
+game

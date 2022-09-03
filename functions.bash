@@ -161,21 +161,6 @@ iswin () {
 
 calc
 
-## FLUSH CODE
-
-if [[ "$flush" -eq 1 ]]; then
-	flush=1
-display[0]=": +"
-display[1]=": +"
-display[2]=": +"
-display[3]=": +"
-display[4]=": +"
-##else
-##	flush=0
-fi
-
-## END FLUSH CODE
-
 ## PAIR CODE
 
 if [[ "$pair1" -eq 1 ]] ; then
@@ -263,7 +248,7 @@ fi
 ## STRAIGHT CODE
 
 if [[ "$straight" -eq 1 ]]; then
-	straight=1
+	flag="Straight"
 display[3]=": +"
 display[4]=": +"
 display[0]=": +"
@@ -271,6 +256,21 @@ display[1]=": +"
 display[2]=": +"
 fi
 ## END STRAIGHT CODE
+
+## FLUSH CODE
+
+if [[ "$flush" -eq 1 ]]; then
+	flag="Flush"
+display[0]=": +"
+display[1]=": +"
+display[2]=": +"
+display[3]=": +"
+display[4]=": +"
+else
+	flush=0
+fi
+
+## END FLUSH CODE
 
 ## FULL HOUSE CODE
 if [[ "$three1" -eq 1 ]]; then
@@ -328,5 +328,36 @@ echo "4""${display[3]}""${mchand[3]}"
 echo "5""${display[4]}""${mchand[4]}"
 
 echo "-------------------------------"
+
+}
+
+game () {
+
+freshstart
+shuffle
+deal
+render
+mull
+render
+sleep 1
+
+}
+
+debug_game () {
+
+freshstart
+shuffle
+deal
+render
+mull
+
+mchand[0]="${library[30]}"
+mchand[1]="${library[31]}"
+mchand[2]="${library[33]}"
+mchand[3]="${library[37]}"
+mchand[4]="${library[38]}"
+
+render
+sleep 1
 
 }
