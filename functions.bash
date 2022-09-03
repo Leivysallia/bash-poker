@@ -8,6 +8,14 @@ clear
 
 }
 
+shuffle () {
+
+IFS=$'\n' iteration=( $(shuf -e "${library[@]}") )
+
+unset IFS
+
+}
+
 dex () {
 
 dex=$(( dex + 1 ))
@@ -318,5 +326,7 @@ echo "2""${display[1]}""${mchand[1]}"
 echo "3""${display[2]}""${mchand[2]}"
 echo "4""${display[3]}""${mchand[3]}"
 echo "5""${display[4]}""${mchand[4]}"
+
+echo "-------------------------------"
 
 }
