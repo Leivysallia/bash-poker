@@ -341,6 +341,10 @@ mull
 render
 sleep 1
 
+read -n1 -r -p $'\nPlay Again? [1=Y] ' repeat
+
+echo ""
+
 }
 
 debug_game () {
