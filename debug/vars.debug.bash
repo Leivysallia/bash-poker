@@ -11,6 +11,8 @@ value=""
 
 regex='.*\+'
 
+unset checkmull
+
 unset hold[@]
 unset holdit[@]
 unset display[@]

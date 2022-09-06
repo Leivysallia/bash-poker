@@ -76,65 +76,15 @@ index () {
 
 }
 
-mull () {
-
-read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
-while [[ dis -gt 3 || dis -lt 0 ]]; do
-	echo $'>Invalid Input: '
-	read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
-done
-
-if [[ dis -eq 1 ]]; then
-	read -n1 -r -p $'\n|Index Number [1-5]: ' one
-			index
-	mchand[$one]=${iteration[$dex]}
-	dex
-fi
-
-if [[ dis -eq 2 ]]; then
-	read -n1 -r -p $'\n|Index Number [1-5]: ' one
-	read -n1 -r -p $'\n|Index Number [1-5]: ' two
-	while [[ $two -eq $one ]]; do
-		read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
-	done
-			index
-	mchand[$one]=${iteration[$dex]}
-	dex
-	mchand[$two]=${iteration[$dex]}
-	dex
-fi
-
-if [[ dis -eq 3 ]]; then
-	read -n1 -r -p $'\n|Index Number [1-5]: ' one
-	read -n1 -r -p $'\n|Index Number [1-5]: ' two
-		while [[ $two -eq $one ]]; do
-		read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
-		done
-	read -n1 -r -p $'\n|Index Number [1-5]: ' three
-		while [[ $three -eq $one || $three -eq $two ]]; do
-		read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' three
-		done
-			index
-	mchand[$one]=${iteration[$dex]}
-	dex
-	mchand[$two]=${iteration[$dex]}
-	dex
-	mchand[$three]=${iteration[$dex]}
-	dex	
-fi
-
-echo $'\n'
-
-ruffle
-
-}
-
 debugmull () {
 
 checkmull=${#hold[@]}
 
 if [[ $checkmull -gt 0 ]]
 then
+	wordholdit
+echo ${holdit[@]}
+	numholdit
 read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
 while [[ keep -gt 1 || keep -lt 0 ]]; do
 	echo $'>Invalid Input: '
@@ -144,9 +94,11 @@ if [[ $keep -eq 1 ]]; then
 hold
 fi
 
-else
+fi
 
-read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
+if [[ keep -eq 0 ]]
+then
+read -n1 -r -p $'\n+How Many to Discard? [0-3]: ' dis
 while [[ dis -gt 3 || dis -lt 0 ]]; do
 	echo $'>Invalid Input: '
 	read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
@@ -227,188 +179,12 @@ display[4]=":  "
 
 }
 
-iswin () {
-
-calc
-
-## PAIR CODE
-
-if [[ "$pair1" -eq 1 ]] ; then
-    flag=Pair
-    value=""$num1"s"
-display[0]=": +"
-display[1]=": +"
-fi
-
-if [[ "$pair2" -eq 1 ]] ; then
-    flag=Pair
-    value=""$num2"s"
-display[1]=": +"
-display[2]=": +"
-fi
-
-if [[ "$pair3" -eq 1 ]] ; then
-    flag=Pair
-    value=""$num3"s"
-display[3]=": +"
-display[2]=": +"
-fi
-
-if [[ "$pair4" -eq 1 ]] ; then
-    flag=Pair
-    value=""$num4"s"
-display[3]=": +"
-display[4]=": +"
-fi
-## END PAIR CODE
-
-## TWO PAIR CODE
-if [[ "$pair1" -eq 1 ]]; then
-	if [[ "$pair2" -eq 1 ]]; then
-	flag="Two Pair"
-	value=""$num1"s/"$num2"s"
-	fi
-fi
-if [[ "$pair1" -eq 1 ]]; then
-	if [[ "$pair3" -eq 1 ]]; then
-	flag="Two Pair"
-	value=""$num1"s/"$num3"s"
-	fi
-fi
-if [[ "$pair1" -eq 1 ]]; then
-	if [[ "$pair4" -eq 1 ]]; then
-	flag="Two Pair"
-	value=""$num1"s/"$num4"s"
-	fi
-fi
-if [[ "$pair2" -eq 1 ]]; then
-	if [[ "$pair3" -eq 1 ]]; then
-	flag="Two Pair"
-	value=""$num2"s/"$num3"s"
-	fi
-fi
-if [[ "$pair2" -eq 1 ]]; then
-	if [[ "$pair4" -eq 1 ]]; then
-	flag="Two Pair"
-	value=""$num2"s/"$num4"s"
-	fi
-fi
-if [[ "$pair3" -eq 1 ]]; then
-	if [[ "$pair4" -eq 1 ]]; then
-	flag="Two Pair"
-	value=""$num3"s/"$num4"s"
-	fi
-fi
-## END TWO PAIR CODE
-
-## THREE OF A KIND CODE
-
-if [[ "$three1" -eq 1 ]]; then
-    flag="Three of a Kind"
-    value=""$num1"s"
-display[0]=": +"
-display[1]=": +"
-display[2]=": +"
-fi
-
-if [[ "$three2" -eq 1 ]]; then
-    flag="Three of a Kind" 
-    value=""$num2"s"
-display[3]=": +"
-display[1]=": +"
-display[2]=": +"
-fi
-
-if [[ "$three3" -eq 1 ]]; then
-    flag="Three of a Kind"
-    value=""$num3"s"
-display[3]=": +"
-display[4]=": +"
-display[2]=": +"
-fi
-## END THREE OF A KIND CODE
-
-## STRAIGHT CODE
-
-if [[ "$straight" -eq 1 ]]; then
-	flag="Straight"
-display[3]=": +"
-display[4]=": +"
-display[0]=": +"
-display[1]=": +"
-display[2]=": +"
-fi
-## END STRAIGHT CODE
-
-## FLUSH CODE
-
-if [[ "$flush" -eq 1 ]]; then
-	flag="Flush"
-	value="$class1"
-display[0]=": +"
-display[1]=": +"
-display[2]=": +"
-display[3]=": +"
-display[4]=": +"
-else
-	flush=0
-fi
-
-## END FLUSH CODE
-
-## FULL HOUSE CODE
-if [[ "$three1" -eq 1 ]]; then
-	if [[ "$pair4" -eq 1 ]]; then
-	flag="Full House"
-	value=""$num1"s"$num4"s"
-	fi
-fi
-if [[ "$three3" -eq 1 ]]; then
-	if [[ "$pair1" -eq 1 ]]; then
-	flag="Full House"
-	value=""$num3"s"$num1"s"
-	fi
-fi
-## END FULL HOUSE CODE
-
-## FOUR OF A KIND CODE
-if [[ "$four1" -eq 1 ]] ; then
-    flag="Four of a Kind"
-    value=""$num1"s"
-display[0]=": +"
-display[1]=": +"
-display[2]=": +"
-display[3]=": +"
-fi
-
-if [[ "$four2" -eq 1 ]] ; then
-    flag="Four of a Kind"
-    value=""$num2"s"
-display[4]=": +"
-display[1]=": +"
-display[2]=": +"
-display[3]=": +"
-fi
-## END FOUR OF A KIND CODE
-
-## STRAIGHT FLUSH CODE
-if [[ "$flush" -eq 1 ]]; then
-	if [[ "$straight" -eq 1 ]]; then
-	flag="Straight Flush"
-	fi
-fi
-## END STRAIGHT FLUSH CODE
-
-value=$( echo $value  |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|' )
-
-##echo $'\n'
-echo "$flag $value"
-
-}
-
 iswinhold () {
 
 calc
+
+flag="HIGH"
+value=""
 
 ## PAIR CODE
 
@@ -651,23 +427,81 @@ hand[4]=$(echo ${mchand[4]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11
 
 }
 
-render () {
+wordholdit () {
 
-numhand
+holdnum=${#hold[@]}
 
-iswin
+if [[ $holdnum -eq 1 ]]
+then
+holdit[0]=$(echo ${hold[0]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+fi
+if [[ $holdnum -eq 2 ]]
+then
+holdit[1]=$(echo ${hold[1]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[0]=$(echo ${hold[0]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+fi
+if [[ $holdnum -eq 3 ]]
+then
+holdit[1]=$(echo ${hold[1]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[0]=$(echo ${hold[0]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[2]=$(echo ${hold[2]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+fi
 
-echo ""
+if [[ $holdnum -eq 4 ]]
+then
+holdit[1]=$(echo ${hold[1]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[0]=$(echo ${hold[0]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[2]=$(echo ${hold[2]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[3]=$(echo ${hold[3]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+fi
 
-wordhand
+if [[ $holdnum -eq 5 ]]
+then
+holdit[1]=$(echo ${hold[1]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[0]=$(echo ${hold[0]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[2]=$(echo ${hold[2]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[3]=$(echo ${hold[3]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+holdit[4]=$(echo ${hold[4]} |sed 's|10|XX|' |sed 's|13|King|' |sed 's|12|Queen|' |sed 's|11|Jack|' |sed 's|1|Ace|' |sed 's|XX|10|')
+fi
 
-echo "1""${display[0]}""${hand[0]}"
-echo "2""${display[1]}""${hand[1]}"
-echo "3""${display[2]}""${hand[2]}"
-echo "4""${display[3]}""${hand[3]}"
-echo "5""${display[4]}""${hand[4]}"
+}
 
-echo "-------------------------------"
+numholdit () {
+
+holdnum=${#hold[@]}
+
+if [[ $holdnum -eq 1 ]]
+then
+holdit[0]=$(echo ${hold[0]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+fi
+if [[ $holdnum -eq 2 ]]
+then
+holdit[1]=$(echo ${hold[1]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[0]=$(echo ${hold[0]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+fi
+if [[ $holdnum -eq 3 ]]
+then
+holdit[1]=$(echo ${hold[1]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[0]=$(echo ${hold[0]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[2]=$(echo ${hold[2]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+fi
+
+if [[ $holdnum -eq 4 ]]
+then
+holdit[1]=$(echo ${hold[1]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[0]=$(echo ${hold[0]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[2]=$(echo ${hold[2]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[3]=$(echo ${hold[3]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+fi
+
+if [[ $holdnum -eq 5 ]]
+then
+holdit[1]=$(echo ${hold[1]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[0]=$(echo ${hold[0]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[2]=$(echo ${hold[2]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[3]=$(echo ${hold[3]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+holdit[4]=$(echo ${hold[4]} |sed 's|King|13|' |sed 's|Queen|12|' |sed 's|Jack|11|' |sed 's|Ace|1|')
+fi
 
 }
 
@@ -676,7 +510,7 @@ debugrender () {
 numhand
 
 iswinhold
-echo ${hold[@]}
+
 echo ""
 
 wordhand
@@ -741,25 +575,14 @@ case $index in
     ;;
 esac
 
-echo ${holdit[@]}
+mchand[0]="${hold[0]}"
+mchand[1]="${hold[1]}"
+mchand[2]="${hold[2]}"
+mchand[3]="${hold[3]}"
+mchand[4]="${hold[4]}"
 
-}
+ruffle
 
-game () {
-
-freshstart
-shuffle
-deal
-render
-mull
-render
-sleep 1
-
-read -n1 -r -p $'\nPlay Again? [1=Y] ' repeat
-
-source vars.bash
-
-echo ""
 
 }
 
@@ -782,7 +605,7 @@ sleep 1
 
 read -n1 -r -p $'\nPlay Again? [1=Y] ' repeat
 
-source vars.bash
+source vars.debug.bash
 
 echo ""
 

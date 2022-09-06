@@ -2,12 +2,10 @@
 
 clear
 
-source functions.bash
-source vars.bash
+source functions.debug.bash
+source vars.debug.bash
 
 debug_game
-
-##	game
 
 while [[ $repeat -eq 1 ]]
 do
@@ -15,5 +13,5 @@ do
 	then
 		break
 	fi
-	game
+	debug_game
 done
