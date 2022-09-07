@@ -2,23 +2,22 @@
 
 dex=0
 flag="HIGH"
-iter=51
-one=-1
-two=-1
-three=-1
+one=
+two=
+three=
 flush=0
-value=""
+value=
+checkmull=
+keep=
 
 regex='.*\+'
 
-unset checkmull
-
-unset hold[@]
-unset holdit[@]
-unset display[@]
-unset library[@]
-unset mchand[@]
-unset iteration[@]
+hold=()
+holdit=()
+display=()
+library=()
+mchand=()
+iteration=()
 
 library[0]="1 of Spades"
 library[1]="2 of Spades"
