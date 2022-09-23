@@ -2,6 +2,12 @@
 
 shopt -s lastpipe
 
+newstart () {
+
+clear & wait
+
+}
+
 freshstart () {
 
 clear & wait
@@ -579,7 +585,8 @@ ruffle
 
 debug_game () {
 
-freshstart
+##	freshstart
+newstart
 shuffle
 deal
 debugrender
