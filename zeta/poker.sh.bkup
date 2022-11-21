@@ -1,0 +1,63 @@
+#!/bin/bash
+
+clear
+
+source functions.bash
+source poker.bash
+
+flag="HIGH"
+
+iter=51
+IFS=$OLDIFS
+
+until [[ $iter -lt 0 ]]
+do
+pull=$(( RANDOM % 52 ))
+codex[$pull]="${index[$pull]}"
+
+if [[ ${index[$pull]} -ne 0 ]]
+then
+	index[$pull]=$'0'
+fi
+if [[ ${codex[$pull]} -ne 0 ]]
+then
+iteration[$iter]=${library[$pull]}
+echo ${library[$pull]} 
+codex[$pull]=$'0'
+iter=$(( iter - 1 ))
+else
+	RANDOM=$RANDOM
+pull=$(( RANDOM % 52 ))
+fi
+done > test.bash
+
+##	sort test.bash > temp
+##	mv -fv temp test.bash
+
+mchand[0]=${iteration[0]}
+mchand[1]=${iteration[1]}
+mchand[2]=${iteration[2]}
+mchand[3]=${iteration[3]}
+mchand[4]=${iteration[4]}
+
+##IFS=$'\n' sorted=($(sort <<<"${mchand[*]}"))
+ruffle
+
+echo ${mchand[0]}
+echo ${mchand[1]}
+echo ${mchand[2]}
+echo ${mchand[3]}
+echo ${mchand[4]}
+##echo $'\n'
+##echo ${sorted[0]}
+##echo ${sorted[1]}
+##echo ${sorted[2]}
+##echo ${sorted[3]}
+##echo ${sorted[4]}
+
+
+var
+calc
+
+iswin
+
