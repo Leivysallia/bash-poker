@@ -1,24 +1,5 @@
 #!/bin/bash
 
-export dex=0
-export flag="HIGH"
-export iter=51
-export one=-1
-export two=-1
-export three=-1
-export flush=0
-export value=""
-export regex='.*\+'
-export repeat=1
-
-unset keep
-##unset "hold[@]"
-unset "holdit[@]"
-unset "display[@]"
-unset "library[@]"
-unset "mchand[@]"
-unset "iteration[@]"
-unset "hand[@]"
 
 library[0]="1 of Spades"
 library[1]="2 of Spades"
@@ -73,15 +54,23 @@ library[49]="3 of Hearts"
 library[50]="2 of Hearts"
 library[51]="1 of Hearts"
 
-display[0]=":  "
-display[1]=":  "
-display[2]=":  "
-display[3]=":  "
-display[4]=":  "
 
-www=0
+badruffle() {
 
-if [[ www -ne 0 ]]; then
-    echo "${display[@]}"
-    echo "${library[@]}"
-fi
+IFS=$'\n'
+	mapfile -t mchand < <(sort -n <<<"${mchand[*]}")
+unset IFS
+
+}
+
+badshuffle() {
+
+IFS=$'\n'
+	mapfile -t iteration < <(shuf -e "${library[@]}")
+unset IFS
+
+}
+
+badshuffle
+
+echo "${iteration[44]}"

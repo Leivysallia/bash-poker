@@ -78,10 +78,3 @@ display[1]=":  "
 display[2]=":  "
 display[3]=":  "
 display[4]=":  "
-
-www=0
-
-if [[ www -ne 0 ]]; then
-    echo "${display[@]}"
-    echo "${library[@]}"
-fi

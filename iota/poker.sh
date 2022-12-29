@@ -5,9 +5,7 @@ clear
 source functions.bash
 source vars.bash
 
-debug_game
-
-##	game
+game
 
 while [[ $repeat -eq 1 ]]
 do
@@ -15,5 +13,5 @@ do
 	then
 		return 1
 	fi
-	debug_game
+	game
 done

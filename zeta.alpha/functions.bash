@@ -3,21 +3,13 @@
 freshstart() {
 
 	clear
-
-}
-
-ruffle() {
-
-	IFS=$'\n'
-	mapfile -t mchand < <(sort -n <<<"${mchand[*]}")
-	unset IFS
+	clear
 
 }
 
 shuffle() {
 
-	IFS=$'\n'
-	mapfile -t iteration < <(shuf -e "${library[@]}")
+	IFS=$'\n' iteration=($(shuf -e "${library[@]}"))
 	unset IFS
 
 }
@@ -28,15 +20,26 @@ dex() {
 
 }
 
-realdeal() {
+ruffle() {
 
-	mchand[0]="${iteration[0]}"
-	mchand[1]="${iteration[1]}"
-	mchand[2]="${iteration[2]}"
-	mchand[3]="${iteration[3]}"
-	mchand[4]="${iteration[4]}"
+	IFS=$'\n' mchand=($(sort -n <<<"${mchand[*]}"))
+	unset IFS
 
-	##	ruffle
+}
+
+deal() {
+
+	mchand[0]=${iteration[$dex]}
+	dex
+	mchand[1]=${iteration[$dex]}
+	dex
+	mchand[2]=${iteration[$dex]}
+	dex
+	mchand[3]=${iteration[$dex]}
+	dex
+	mchand[4]=${iteration[$dex]}
+	dex
+
 	ruffle
 
 }
@@ -44,30 +47,10 @@ realdeal() {
 var() {
 
 	card1=${mchand[0]}
-	card1="${card1## }"
-	card1="${card1## }"
-	card1="${card1%% }"
-	card1="${card1%% }"
 	card2=${mchand[1]}
-	card2="${card2## }"
-	card2="${card2## }"
-	card2="${card2%% }"
-	card2="${card2%% }"
 	card3=${mchand[2]}
-	card3="${card3## }"
-	card3="${card3## }"
-	card3="${card3%% }"
-	card3="${card3%% }"
 	card4=${mchand[3]}
-	card4="${card4## }"
-	card4="${card4## }"
-	card4="${card4%% }"
-	card4="${card4%% }"
 	card5=${mchand[4]}
-	card5="${card5## }"
-	card5="${card5## }"
-	card5="${card5%% }"
-	card5="${card5%% }"
 
 	num1=${card1%% *}
 	num2=${card2%% *}
@@ -91,27 +74,26 @@ index() {
 
 }
 
-mull() {
+debugmull() {
 
 	checkmull=${#hold[@]}
-	##	checkmull=0
-	if [[ checkmull -ne 0 ]]; then
+
+	if [[ checkmull -gt 0 ]]; then
 		read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
 		while [[ keep -gt 1 || keep -lt 0 ]]; do
 			echo $'>Invalid Input: '
 			read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
 		done
+
+	else
+
+		keep=0
+
 	fi
 
 	if [[ keep -eq 1 ]]; then
-		testhold
-	fi
-
-	if [[ keep -eq 0 ]]; then
-		echo ""
-	fi
-
-	if [[ checkmull -eq 0 || keep -eq 0 ]]; then
+		hold
+	else
 		read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
 		while [[ dis -gt 3 || dis -lt 0 ]]; do
 			echo $'>Invalid Input: '
@@ -121,7 +103,8 @@ mull() {
 		if [[ dis -eq 1 ]]; then
 			read -n1 -r -p $'\n|Index Number [1-5]: ' one
 			index
-			mchand[one]=${iteration[5]}
+			mchand[one]=${iteration[$dex]}
+			dex
 		fi
 
 		if [[ dis -eq 2 ]]; then
@@ -131,8 +114,10 @@ mull() {
 				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
 			done
 			index
-			mchand[one]=${iteration[5]}
-			mchand[two]=${iteration[6]}
+			mchand[one]=${iteration[$dex]}
+			dex
+			mchand[two]=${iteration[$dex]}
+			dex
 		fi
 
 		if [[ dis -eq 3 ]]; then
@@ -146,121 +131,202 @@ mull() {
 				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' three
 			done
 			index
-			mchand[one]=${iteration[5]}
-			mchand[two]=${iteration[6]}
-			mchand[three]=${iteration[7]}
+			mchand[one]=${iteration[$dex]}
+			dex
+			mchand[two]=${iteration[$dex]}
+			dex
+			mchand[three]=${iteration[$dex]}
+			dex
 		fi
 	fi
 
 	echo $'\n'
 
-	##	ruffle
 	ruffle
 
 }
 
-ifcalc() {
+NOTWORKINGdebugmull() {
 
-	var
+	checkmull=${#hold[@]}
 
-	pair1=0
-	pair2=0
-	pair3=0
-	pair4=0
-	three1=0
-	three2=0
-	three3=0
-	four1=0
-	four2=0
-	flush=0
-	straight=0
+	if [[ checkmull -gt 0 ]]; then
+		read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
+		while [[ keep -gt 1 || keep -lt 0 ]]; do
+			echo $'>Invalid Input: '
+			read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
+		done
 
-	if [[ "$class1" == "$class2" ]]; then
-		if [[ "$class2" == "$class3" ]]; then
-			if [[ "$class3" == "$class4" ]]; then
-				if [[ "$class4" == "$class5" ]]; then
-					flush=1
-				fi
+		if [[ keep -eq 1 ]]; then
+			hold
+		else
+			read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
+			while [[ dis -gt 3 || dis -lt 0 ]]; do
+				echo $'>Invalid Input: '
+				read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
+			done
+
+			if [[ dis -eq 1 ]]; then
+				read -n1 -r -p $'\n|Index Number [1-5]: ' one
+				index
+				mchand[one]=${iteration[$dex]}
+				dex
 			fi
+
+			if [[ dis -eq 2 ]]; then
+				read -n1 -r -p $'\n|Index Number [1-5]: ' one
+				read -n1 -r -p $'\n|Index Number [1-5]: ' two
+				while [[ $two -eq $one ]]; do
+					read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
+				done
+				index
+				mchand[one]=${iteration[$dex]}
+				dex
+				mchand[two]=${iteration[$dex]}
+				dex
+			fi
+
+			if [[ dis -eq 3 ]]; then
+				read -n1 -r -p $'\n|Index Number [1-5]: ' one
+				read -n1 -r -p $'\n|Index Number [1-5]: ' two
+				while [[ $two -eq $one ]]; do
+					read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
+				done
+				read -n1 -r -p $'\n|Index Number [1-5]: ' three
+				while [[ $three -eq $one || $three -eq $two ]]; do
+					read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' three
+				done
+				index
+				mchand[one]=${iteration[$dex]}
+				dex
+				mchand[two]=${iteration[$dex]}
+				dex
+				mchand[three]=${iteration[$dex]}
+				dex
+			fi
+		fi
+
+	else
+
+		read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
+		while [[ dis -gt 3 || dis -lt 0 ]]; do
+			echo $'>Invalid Input: '
+			read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
+		done
+
+		if [[ dis -eq 1 ]]; then
+			read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			index
+			mchand[one]=${iteration[$dex]}
+			dex
+		fi
+
+		if [[ dis -eq 2 ]]; then
+			read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			read -n1 -r -p $'\n|Index Number [1-5]: ' two
+			while [[ $two -eq $one ]]; do
+				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
+			done
+			index
+			mchand[one]=${iteration[$dex]}
+			dex
+			mchand[two]=${iteration[$dex]}
+			dex
+		fi
+
+		if [[ dis -eq 3 ]]; then
+			read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			read -n1 -r -p $'\n|Index Number [1-5]: ' two
+			while [[ $two -eq $one ]]; do
+				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
+			done
+			read -n1 -r -p $'\n|Index Number [1-5]: ' three
+			while [[ $three -eq $one || $three -eq $two ]]; do
+				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' three
+			done
+			index
+			mchand[one]=${iteration[$dex]}
+			dex
+			mchand[two]=${iteration[$dex]}
+			dex
+			mchand[three]=${iteration[$dex]}
+			dex
+		fi
+
+	fi
+
+	echo $'\n'
+
+	ruffle
+
+}
+
+mull() {
+
+	checkmull=${#hold[@]}
+        checkmull=0
+	if [[ checkmull -ne 0 ]]; then
+		read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
+		while [[ keep -gt 1 || keep -lt 0 ]]; do
+			echo $'>Invalid Input: '
+			read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
+		done
+    fi
+	
+	if [[ $keep -eq 1 || $keep == "y" ]]; then
+		hold
+	fi
+	
+    if [[ checkmull -eq 0 ]]; then
+    	read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
+		while [[ dis -gt 3 || dis -lt 0 ]]; do
+			echo $'>Invalid Input: '
+			read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
+		done
+
+		if [[ dis -eq 1 ]]; then
+			read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			index
+			mchand[one]=${iteration[$dex]}
+			dex
+		fi
+
+		if [[ dis -eq 2 ]]; then
+			read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			read -n1 -r -p $'\n|Index Number [1-5]: ' two
+			while [[ $two -eq $one ]]; do
+				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
+			done
+			index
+			mchand[one]=${iteration[$dex]}
+			dex
+			mchand[two]=${iteration[$dex]}
+			dex
+		fi
+
+		if [[ dis -eq 3 ]]; then
+			read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			read -n1 -r -p $'\n|Index Number [1-5]: ' two
+			while [[ $two -eq $one ]]; do
+				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
+			done
+			read -n1 -r -p $'\n|Index Number [1-5]: ' three
+			while [[ $three -eq $one || $three -eq $two ]]; do
+				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' three
+			done
+			index
+			mchand[one]=${iteration[$dex]}
+			dex
+			mchand[two]=${iteration[$dex]}
+			dex
+			mchand[three]=${iteration[$dex]}
+			dex
 		fi
 	fi
 
-	if [[ num1 -eq num2 ]]; then
-		pair1=1
-	fi
+	echo $'\n'
 
-	if [[ num2 -eq num3 ]]; then
-		pair2=1
-	fi
-
-	if [[ num3 -eq num4 ]]; then
-		pair3=1
-	fi
-
-	if [[ num4 -eq num5 ]]; then
-		pair4=1
-	fi
-
-	if [[ num1 -eq num2 ]]; then
-		if [[ num2 -eq num3 ]]; then
-			if [[ num1 -eq num3 ]]; then
-				three1=1
-			fi
-		fi
-	fi
-
-	if [[ num2 -eq num3 ]]; then
-		if [[ num3 -eq num4 ]]; then
-			if [[ num2 -eq num4 ]]; then
-				three2=1
-			fi
-		fi
-	fi
-
-	if [[ num3 -eq num4 ]]; then
-		if [[ num4 -eq num5 ]]; then
-			if [[ num3 -eq num5 ]]; then
-				three3=1
-			fi
-		fi
-	fi
-
-	straightcheck1="$num1"
-	straightcheck2=$((num2 - 1))
-	straightcheck3=$((num3 - 2))
-	straightcheck4=$((num4 - 3))
-	straightcheck5=$((num5 - 4))
-	if [[ straightcheck1 -eq straightcheck2 ]]; then
-		if [[ straightcheck2 -eq straightcheck3 ]]; then
-			if [[ straightcheck3 -eq straightcheck4 ]]; then
-				if [[ straightcheck4 -eq straightcheck5 ]]; then
-					straight=1
-				fi
-			fi
-		fi
-	fi
-
-	if [[ num1 -eq num2 ]]; then
-		if [[ num2 -eq num3 ]]; then
-			if [[ num3 -eq num4 ]]; then
-				four1=1
-			fi
-		fi
-	fi
-
-	if [[ num2 -eq num3 ]]; then
-		if [[ num3 -eq num4 ]]; then
-			if [[ num4 -eq num5 ]]; then
-				four2=1
-			fi
-		fi
-	fi
-
-	display[0]=":  "
-	display[1]=":  "
-	display[2]=":  "
-	display[3]=":  "
-	display[4]=":  "
+	ruffle
 
 }
 
@@ -294,8 +360,7 @@ calc() {
 
 iswinhold() {
 
-	flag="HIGH"
-	ifcalc
+	calc
 
 	## PAIR CODE
 
@@ -400,9 +465,9 @@ iswinhold() {
 		display[1]=": +"
 		display[2]=": +"
 
-		hold[1]="${mchand[1]}"
-		hold[2]="${mchand[2]}"
-		hold[3]="${mchand[3]}"
+		hold[0]="${mchand[1]}"
+		hold[1]="${mchand[2]}"
+		hold[2]="${mchand[3]}"
 	fi
 
 	if [[ "$three3" -eq 1 ]]; then
@@ -412,9 +477,9 @@ iswinhold() {
 		display[4]=": +"
 		display[2]=": +"
 
-		hold[4]="${mchand[4]}"
-		hold[2]="${mchand[2]}"
-		hold[3]="${mchand[3]}"
+		hold[0]="${mchand[4]}"
+		hold[1]="${mchand[2]}"
+		hold[2]="${mchand[3]}"
 	fi
 	## END THREE OF A KIND CODE
 
@@ -496,7 +561,7 @@ iswinhold() {
 		display[3]=": +"
 		display[4]=": +"
 
-		hold[4]="${mchand[4]}"
+		hold[0]="${mchand[4]}"
 		hold[1]="${mchand[1]}"
 		hold[2]="${mchand[2]}"
 		hold[3]="${mchand[3]}"
@@ -538,52 +603,9 @@ numhand() {
 
 }
 
-wordvar() {
+debugrender() {
 
-	card1=${mchand[0]}
-	card1="${card1## }"
-	card1="${card1## }"
-	card1="${card1%% }"
-	card1="${card1%% }"
-	card2=${mchand[1]}
-	card2="${card2## }"
-	card2="${card2## }"
-	card2="${card2%% }"
-	card2="${card2%% }"
-	card3=${mchand[2]}
-	card3="${card3## }"
-	card3="${card3## }"
-	card3="${card3%% }"
-	card3="${card3%% }"
-	card4=${mchand[3]}
-	card4="${card4## }"
-	card4="${card4## }"
-	card4="${card4%% }"
-	card4="${card4%% }"
-	card5=${mchand[4]}
-	card5="${card5## }"
-	card5="${card5## }"
-	card5="${card5%% }"
-	card5="${card5%% }"
-
-	word1=${card1%% *}
-	if [[ "$word1" == "Ace" ]]; then
-	word2=${card2%% *}
-	word3=${card3%% *}
-	word4=${card4%% *}
-	word5=${card5%% *}
-
-	class1=${card1##* }
-	class2=${card2##* }
-	class3=${card3##* }
-	class4=${card4##* }
-	class5=${card5##* }
-
-}
-
-realrender() {
-
-	##numhand
+	numhand
 
 	iswinhold
 	##	echo "${hold[@]}"
@@ -600,41 +622,6 @@ realrender() {
 
 }
 
-testhold() {
-
-	if [[ ! -v "hold[0]" ]]; then
-		##	echo "1. hold[0] is not set"
-		mchand[0]="${iteration[5]}"
-	else
-		mchand[0]="${hold[0]}"
-	fi
-	if [[ ! -v "hold[1]" ]]; then
-		##	echo "2. hold[1] is not set"
-		mchand[1]="${iteration[6]}"
-	else
-		mchand[1]="${hold[1]}"
-	fi
-	if [[ ! -v "hold[2]" ]]; then
-		##	echo "3. hold[2] is not set"
-		mchand[2]="${iteration[7]}"
-	else
-		mchand[2]="${hold[2]}"
-	fi
-	if [[ ! -v "hold[3]" ]]; then
-		##	echo "4. hold[3] is not set"
-		mchand[3]="${iteration[8]}"
-	else
-		mchand[3]="${hold[3]}"
-	fi
-	if [[ ! -v "hold[4]" ]]; then
-		##	echo "5. hold[4] is not set"
-		mchand[4]="${iteration[9]}"
-	else
-		mchand[4]="${hold[4]}"
-	fi
-
-}
-
 hold() {
 
 	##for holdcheck in "${!display[@]}"
@@ -647,7 +634,7 @@ hold() {
 
 	index=${#hold[@]}
 
-	if [[ index -eq 1 ]]; then
+    if [[ index -eq 1 ]]; then
 		hold[index]=${iteration[5]}
 		index=$((index + 1))
 		hold[index]=${iteration[6]}
@@ -674,10 +661,10 @@ hold() {
 	if [[ index -eq 4 ]]; then
 		hold[index]=${iteration[5]}
 	fi
-
+    
 	if [[ index -eq 5 ]]; then
 		export uhh=1
-	fi
+    fi
 
 	##	mchand[0]="${hold[0]}"
 	##	mchand[1]="${hold[1]}"
@@ -689,15 +676,15 @@ hold() {
 
 	mchand=("${hold[@]}")
 
+
 }
 
 debug_game() {
 
 	freshstart
-	##shuffle
 	shuffle
-	realdeal
-	realrender
+	deal
+	debugrender
 	mull
 
 	##	mchand[0]="${library[7]}"
@@ -706,11 +693,11 @@ debug_game() {
 	##	mchand[3]="${library[37]}"
 	##	mchand[4]="${library[38]}"
 
-	realrender
+	debugrender
 	sleep 1
 
 	source vars.bash
-	read -n1 -r -p $'\nPlay Again? [0/1] ' repeat
+	read -n1 -r -p $'\nPlay Again? [1=Y] ' repeat
 
 	zed=${#hold[@]}
 

@@ -1,0 +1,12 @@
+#!/bin/bash
+flush=0
+four1=0
+four2=0
+pair1=0
+pair2=0
+pair3=0
+pair4=0
+straight=0
+three1=0
+three2=0
+three3=0

@@ -22,13 +22,7 @@ shuffle() {
 
 }
 
-dex() {
-
-	((dex++))
-
-}
-
-realdeal() {
+deal() {
 
 	mchand[0]="${iteration[0]}"
 	mchand[1]="${iteration[1]}"
@@ -36,54 +30,33 @@ realdeal() {
 	mchand[3]="${iteration[3]}"
 	mchand[4]="${iteration[4]}"
 
-	##	ruffle
 	ruffle
-
+	
 }
 
 var() {
 
-	card1=${mchand[0]}
-	card1="${card1## }"
-	card1="${card1## }"
-	card1="${card1%% }"
-	card1="${card1%% }"
-	card2=${mchand[1]}
-	card2="${card2## }"
-	card2="${card2## }"
-	card2="${card2%% }"
-	card2="${card2%% }"
-	card3=${mchand[2]}
-	card3="${card3## }"
-	card3="${card3## }"
-	card3="${card3%% }"
-	card3="${card3%% }"
-	card4=${mchand[3]}
-	card4="${card4## }"
-	card4="${card4## }"
-	card4="${card4%% }"
-	card4="${card4%% }"
-	card5=${mchand[4]}
-	card5="${card5## }"
-	card5="${card5## }"
-	card5="${card5%% }"
-	card5="${card5%% }"
+	card1="${mchand[0]}"
+	card2="${mchand[1]}"
+	card3="${mchand[2]}"
+	card4="${mchand[3]}"
+	card5="${mchand[4]}"
 
-	num1=${card1%% *}
-	num2=${card2%% *}
-	num3=${card3%% *}
-	num4=${card4%% *}
-	num5=${card5%% *}
+	num1="${card1%% *}"
+	num2="${card2%% *}"
+	num3="${card3%% *}"
+	num4="${card4%% *}"
+	num5="${card5%% *}"
 
-	class1=${card1##* }
-	class2=${card2##* }
-	class3=${card3##* }
-	class4=${card4##* }
-	class5=${card5##* }
+	class1="${card1##* }"
+	class2="${card2##* }"
+	class3="${card3##* }"
+	class4="${card4##* }"
+	class5="${card5##* }"
 
 }
 
-index() {
+redex() {
 
 	((one--))
 	((two--))
@@ -104,7 +77,7 @@ mull() {
 	fi
 
 	if [[ keep -eq 1 ]]; then
-		testhold
+		hold
 	fi
 
 	if [[ keep -eq 0 ]]; then
@@ -120,23 +93,35 @@ mull() {
 
 		if [[ dis -eq 1 ]]; then
 			read -n1 -r -p $'\n|Index Number [1-5]: ' one
-			index
+			while [[ one -gt 5 || one -lt 1 ]]; do
+				echo $'>Invalid Input: '
+				read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			done
+			redex
 			mchand[one]=${iteration[5]}
 		fi
 
 		if [[ dis -eq 2 ]]; then
 			read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			while [[ one -gt 5 || one -lt 1 ]]; do
+				echo $'>Invalid Input: '
+				read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			done
 			read -n1 -r -p $'\n|Index Number [1-5]: ' two
 			while [[ $two -eq $one ]]; do
 				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
 			done
-			index
+			redex
 			mchand[one]=${iteration[5]}
 			mchand[two]=${iteration[6]}
 		fi
 
 		if [[ dis -eq 3 ]]; then
 			read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			while [[ one -gt 5 || one -lt 1 ]]; do
+				echo $'>Invalid Input: '
+				read -n1 -r -p $'\n|Index Number [1-5]: ' one
+			done
 			read -n1 -r -p $'\n|Index Number [1-5]: ' two
 			while [[ $two -eq $one ]]; do
 				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
@@ -145,7 +130,7 @@ mull() {
 			while [[ $three -eq $one || $three -eq $two ]]; do
 				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' three
 			done
-			index
+			redex
 			mchand[one]=${iteration[5]}
 			mchand[two]=${iteration[6]}
 			mchand[three]=${iteration[7]}
@@ -154,114 +139,8 @@ mull() {
 
 	echo $'\n'
 
-	##	ruffle
 	ruffle
-
-}
-
-ifcalc() {
-
-	var
-
-	pair1=0
-	pair2=0
-	pair3=0
-	pair4=0
-	three1=0
-	three2=0
-	three3=0
-	four1=0
-	four2=0
-	flush=0
-	straight=0
-
-	if [[ "$class1" == "$class2" ]]; then
-		if [[ "$class2" == "$class3" ]]; then
-			if [[ "$class3" == "$class4" ]]; then
-				if [[ "$class4" == "$class5" ]]; then
-					flush=1
-				fi
-			fi
-		fi
-	fi
-
-	if [[ num1 -eq num2 ]]; then
-		pair1=1
-	fi
-
-	if [[ num2 -eq num3 ]]; then
-		pair2=1
-	fi
-
-	if [[ num3 -eq num4 ]]; then
-		pair3=1
-	fi
-
-	if [[ num4 -eq num5 ]]; then
-		pair4=1
-	fi
-
-	if [[ num1 -eq num2 ]]; then
-		if [[ num2 -eq num3 ]]; then
-			if [[ num1 -eq num3 ]]; then
-				three1=1
-			fi
-		fi
-	fi
-
-	if [[ num2 -eq num3 ]]; then
-		if [[ num3 -eq num4 ]]; then
-			if [[ num2 -eq num4 ]]; then
-				three2=1
-			fi
-		fi
-	fi
-
-	if [[ num3 -eq num4 ]]; then
-		if [[ num4 -eq num5 ]]; then
-			if [[ num3 -eq num5 ]]; then
-				three3=1
-			fi
-		fi
-	fi
-
-	straightcheck1="$num1"
-	straightcheck2=$((num2 - 1))
-	straightcheck3=$((num3 - 2))
-	straightcheck4=$((num4 - 3))
-	straightcheck5=$((num5 - 4))
-	if [[ straightcheck1 -eq straightcheck2 ]]; then
-		if [[ straightcheck2 -eq straightcheck3 ]]; then
-			if [[ straightcheck3 -eq straightcheck4 ]]; then
-				if [[ straightcheck4 -eq straightcheck5 ]]; then
-					straight=1
-				fi
-			fi
-		fi
-	fi
-
-	if [[ num1 -eq num2 ]]; then
-		if [[ num2 -eq num3 ]]; then
-			if [[ num3 -eq num4 ]]; then
-				four1=1
-			fi
-		fi
-	fi
-
-	if [[ num2 -eq num3 ]]; then
-		if [[ num3 -eq num4 ]]; then
-			if [[ num4 -eq num5 ]]; then
-				four2=1
-			fi
-		fi
-	fi
-
-	display[0]=":  "
-	display[1]=":  "
-	display[2]=":  "
-	display[3]=":  "
-	display[4]=":  "
-
+	
 }
 
 calc() {
@@ -295,7 +174,7 @@ calc() {
 iswinhold() {
 
 	flag="HIGH"
-	ifcalc
+	calc
 
 	## PAIR CODE
 
@@ -538,55 +417,11 @@ numhand() {
 
 }
 
-wordvar() {
+render() {
 
-	card1=${mchand[0]}
-	card1="${card1## }"
-	card1="${card1## }"
-	card1="${card1%% }"
-	card1="${card1%% }"
-	card2=${mchand[1]}
-	card2="${card2## }"
-	card2="${card2## }"
-	card2="${card2%% }"
-	card2="${card2%% }"
-	card3=${mchand[2]}
-	card3="${card3## }"
-	card3="${card3## }"
-	card3="${card3%% }"
-	card3="${card3%% }"
-	card4=${mchand[3]}
-	card4="${card4## }"
-	card4="${card4## }"
-	card4="${card4%% }"
-	card4="${card4%% }"
-	card5=${mchand[4]}
-	card5="${card5## }"
-	card5="${card5## }"
-	card5="${card5%% }"
-	card5="${card5%% }"
-
-	word1=${card1%% *}
-	if [[ "$word1" == "Ace" ]]; then
-	word2=${card2%% *}
-	word3=${card3%% *}
-	word4=${card4%% *}
-	word5=${card5%% *}
-
-	class1=${card1##* }
-	class2=${card2##* }
-	class3=${card3##* }
-	class4=${card4##* }
-	class5=${card5##* }
-
-}
-
-realrender() {
-
-	##numhand
+	numhand
 
 	iswinhold
-	##	echo "${hold[@]}"
 	echo ""
 
 	wordhand
@@ -600,7 +435,7 @@ realrender() {
 
 }
 
-testhold() {
+hold() {
 
 	if [[ ! -v "hold[0]" ]]; then
 		##	echo "1. hold[0] is not set"
@@ -635,78 +470,14 @@ testhold() {
 
 }
 
-hold() {
-
-	##for holdcheck in "${!display[@]}"
-	##do
-	##	if [[ "${display[$holdcheck]}" =~ $regex ]]
-	##	then
-	##	holdit[$holdcheck]=${mchand[$holdcheck]}
-	##	fi
-	##done
-
-	index=${#hold[@]}
-
-	if [[ index -eq 1 ]]; then
-		hold[index]=${iteration[5]}
-		index=$((index + 1))
-		hold[index]=${iteration[6]}
-		index=$((index + 1))
-		hold[index]=${iteration[7]}
-		index=$((index + 1))
-		hold[index]=${iteration[8]}
-	fi
-
-	if [[ index -eq 2 ]]; then
-		hold[index]=${iteration[5]}
-		index=$((index + 1))
-		hold[index]=${iteration[6]}
-		index=$((index + 1))
-		hold[index]=${iteration[7]}
-	fi
-
-	if [[ index -eq 3 ]]; then
-		hold[index]=${iteration[5]}
-		index=$((index + 1))
-		hold[index]=${iteration[6]}
-	fi
-
-	if [[ index -eq 4 ]]; then
-		hold[index]=${iteration[5]}
-	fi
-
-	if [[ index -eq 5 ]]; then
-		export uhh=1
-	fi
-
-	##	mchand[0]="${hold[0]}"
-	##	mchand[1]="${hold[1]}"
-	##	mchand[2]="${hold[2]}"
-	##	mchand[3]="${hold[3]}"
-	##	mchand[4]="${hold[4]}"
-
-	##	echo "${holdit[@]}"
-
-	mchand=("${hold[@]}")
-
-}
-
 debug_game() {
 
 	freshstart
-	##shuffle
 	shuffle
-	realdeal
-	realrender
+	deal
+	render
 	mull
-
-	##	mchand[0]="${library[7]}"
-	##	mchand[1]="${library[18]}"
-	##	mchand[2]="${library[33]}"
-	##	mchand[3]="${library[37]}"
-	##	mchand[4]="${library[38]}"
-
-	realrender
+	render
 	sleep 1
 
 	source vars.bash
