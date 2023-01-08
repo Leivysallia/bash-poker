@@ -335,6 +335,71 @@ ifcalc() {
 	display[3]=":  "
 	display[4]=":  "
 
+	if [[ "$num1" == "1" ]]; then
+		num1="Ace"
+	fi
+	if [[ "$num1" == "11" ]]; then
+		num1="Jack"
+	fi
+	if [[ "$num1" == "12" ]]; then
+		num1="Queen"
+	fi
+	if [[ "$num1" == "13" ]]; then
+		num1="King"
+	fi
+
+	if [[ "$num2" == "1" ]]; then
+		num2="Ace"
+	fi
+	if [[ "$num2" == "11" ]]; then
+		num2="Jack"
+	fi
+	if [[ "$num2" == "12" ]]; then
+		num2="Queen"
+	fi
+	if [[ "$num2" == "13" ]]; then
+		num2="King"
+	fi
+
+	if [[ "$num3" == "1" ]]; then
+		num3="Ace"
+	fi
+	if [[ "$num3" == "11" ]]; then
+		num3="Jack"
+	fi
+	if [[ "$num3" == "12" ]]; then
+		num3="Queen"
+	fi
+	if [[ "$num3" == "13" ]]; then
+		num3="King"
+	fi
+
+	if [[ "$num4" == "1" ]]; then
+		num4="Ace"
+	fi
+	if [[ "$num4" == "11" ]]; then
+		num4="Jack"
+	fi
+	if [[ "$num4" == "12" ]]; then
+		num4="Queen"
+	fi
+	if [[ "$num4" == "13" ]]; then
+		num4="King"
+	fi
+
+	if [[ "$num5" == "1" ]]; then
+		num5="Ace"
+	fi
+	if [[ "$num5" == "11" ]]; then
+		num5="Jack"
+	fi
+	if [[ "$num5" == "12" ]]; then
+		num5="Queen"
+	fi
+	if [[ "$num5" == "13" ]]; then
+		num5="King"
+	fi
+
 }
 
 iswin() {
@@ -349,7 +414,7 @@ iswin() {
 		flag="High"
 		high=1
 		value="$num5"
-		if [[ "$num1" -eq 1 ]]; then
+		if [[ "$num1" == "Ace" ]]; then
 			value="$num1"
 		fi
 	fi
@@ -574,32 +639,6 @@ iswin() {
 		fi
 	fi
 	## END ROYAL FLUSH CODE
-
-	if [[ "$value" == "1s" ]]; then
-		value="Aces"
-	fi
-	if [[ "$value" == "11s" ]]; then
-		value="Jacks"
-	fi
-	if [[ "$value" == "12s" ]]; then
-		value="Queens"
-	fi
-	if [[ "$value" == "13s" ]]; then
-		value="Kings"
-	fi
-
-	if [[ "$value" == "1" ]]; then
-		value="Ace"
-	fi
-	if [[ "$value" == "11" ]]; then
-		value="Jack"
-	fi
-	if [[ "$value" == "12" ]]; then
-		value="Queen"
-	fi
-	if [[ "$value" == "13" ]]; then
-		value="King"
-	fi
 
 	echo ""
 	echo "-------------------------------"
