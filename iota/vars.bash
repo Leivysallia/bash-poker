@@ -1,9 +1,11 @@
 #!/bin/bash
 
-flag=0
-flush=0
-repeat=1
+re='[1-5]'
 
+unset flag
+unset flush
+unset repeat
+unset discard
 unset one
 unset two
 unset three
@@ -14,6 +16,9 @@ unset "library[@]"
 unset "mchand[@]"
 unset "iteration[@]"
 unset "hand[@]"
+unset disone
+unset distwo
+unset disthree
 
 library[0]="1 of Spades"
 library[1]="2 of Spades"
@@ -76,6 +81,6 @@ display[4]=":  "
 
 echo "${library[@]}" >/dev/null
 echo "${display[@]}" >/dev/null
-echo "$flag" >/dev/null
-echo "$repeat" >/dev/null
-echo "$flush" >/dev/null
+echo "$re" >/dev/null
+##echo "$repeat" >/dev/null
+##echo "$flush" >/dev/null

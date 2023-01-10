@@ -55,70 +55,34 @@ var() {
 	class5="${card5##* }"
 
 	word1="${card1%% *}"
-	if [[ "$word1" == "1" ]]; then
-		word1="Ace"
-	fi
-	if [[ "$word1" == "11" ]]; then
-		word1="Jack"
-	fi
-	if [[ "$word1" == "12" ]]; then
-		word1="Queen"
-	fi
-	if [[ "$word1" == "13" ]]; then
-		word1="King"
-	fi
+	[[ "$word1" == "1" ]] && word1="Ace"
+	[[ "$word1" == "11" ]] && word1="Jack"
+	[[ "$word1" == "12" ]] && word1="Queen"
+	[[ "$word1" == "13" ]] && word1="King"
+
 	word2="${card2%% *}"
-	if [[ "$word2" == "1" ]]; then
-		word2="Ace"
-	fi
-	if [[ "$word2" == "11" ]]; then
-		word2="Jack"
-	fi
-	if [[ "$word2" == "12" ]]; then
-		word2="Queen"
-	fi
-	if [[ "$word2" == "13" ]]; then
-		word2="King"
-	fi
+	[[ "$word2" == "1" ]] && word2="Ace"
+	[[ "$word2" == "11" ]] && word2="Jack"
+	[[ "$word2" == "12" ]] && word2="Queen"
+	[[ "$word2" == "13" ]] && word2="King"
+
 	word3="${card3%% *}"
-	if [[ "$word3" == "1" ]]; then
-		word3="Ace"
-	fi
-	if [[ "$word3" == "11" ]]; then
-		word3="Jack"
-	fi
-	if [[ "$word3" == "12" ]]; then
-		word3="Queen"
-	fi
-	if [[ "$word3" == "13" ]]; then
-		word3="King"
-	fi
+	[[ "$word3" == "1" ]] && word3="Ace"
+	[[ "$word3" == "11" ]] && word3="Jack"
+	[[ "$word3" == "12" ]] && word3="Queen"
+	[[ "$word3" == "13" ]] && word3="King"
+
 	word4="${card4%% *}"
-	if [[ "$word4" == "1" ]]; then
-		word4="Ace"
-	fi
-	if [[ "$word4" == "11" ]]; then
-		word4="Jack"
-	fi
-	if [[ "$word4" == "12" ]]; then
-		word4="Queen"
-	fi
-	if [[ "$word4" == "13" ]]; then
-		word4="King"
-	fi
+	[[ "$word4" == "1" ]] && word4="Ace"
+	[[ "$word4" == "11" ]] && word4="Jack"
+	[[ "$word4" == "12" ]] && word4="Queen"
+	[[ "$word4" == "13" ]] && word4="King"
+
 	word5="${card5%% *}"
-	if [[ "$word5" == "1" ]]; then
-		word5="Ace"
-	fi
-	if [[ "$word5" == "11" ]]; then
-		word5="Jack"
-	fi
-	if [[ "$word5" == "12" ]]; then
-		word5="Queen"
-	fi
-	if [[ "$word5" == "13" ]]; then
-		word5="King"
-	fi
+	[[ "$word5" == "1" ]] && word5="Ace"
+	[[ "$word5" == "11" ]] && word5="Jack"
+	[[ "$word5" == "12" ]] && word5="Queen"
+	[[ "$word5" == "13" ]] && word5="King"
 
 }
 
@@ -135,16 +99,14 @@ mull() {
 	##	index=0
 	if [[ index -ne 0 ]]; then
 		read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
-		while [[ keep -gt 1 || keep -lt 0 ]]; do
+		while [[ "$keep" != "1" && "$keep" != "0" ]]; do
 			echo $'>Invalid Input: '
 			unset keep
 			read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
 		done
 	fi
 
-	if [[ keep -eq 1 ]]; then
-		hold
-	fi
+	[[ keep -eq 1 ]] && hold
 
 	if [[ keep -eq 0 ]]; then
 		if [[ index -ne 0 ]]; then
@@ -153,66 +115,74 @@ mull() {
 	fi
 
 	if [[ index -eq 0 || keep -eq 0 ]]; then
-		read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
-		while [[ dis -gt 3 || dis -lt 0 ]]; do
-			echo $'>Invalid Input: '
-			unset dis
-			read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
+		while [[ discard -ne 1 ]]; do
+			if [[ "$dis" != "0" ]]; then
+				if [[ "$dis" != "1" ]]; then
+					if [[ "$dis" != "2" ]]; then
+						if [[ "$dis" != "3" ]]; then
+							unset dis
+							read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
+							[[ "$dis" == "0" ]] && discard=1
+							[[ "$dis" == "1" ]] && discard=1
+							[[ "$dis" == "2" ]] && discard=1
+							[[ "$dis" == "3" ]] && discard=1
+							if [[ "$discard" != "1" ]]; then
+								echo $'\n>Invalid Input: '
+							fi
+						fi
+					fi
+				fi
+			fi
 		done
 
 		if [[ dis -eq 1 ]]; then
-			read -n1 -r -p $'\n|Index Number [1-5]: ' one
-			while [[ one -gt 5 || one -lt 1 ]]; do
-				echo $'>Invalid Input: '
-				unset one
-				read -n1 -r -p $'\n|Index Number [1-5]: ' one
-			done
-			redex
-			mchand[one]=${iteration[5]}
+			disone=1
 		fi
-
 		if [[ dis -eq 2 ]]; then
-			read -n1 -r -p $'\n|Index Number [1-5]: ' one
-			while [[ one -gt 5 || one -lt 1 ]]; do
-				echo $'>Invalid Input: '
-				unset one
-				read -n1 -r -p $'\n|Index Number [1-5]: ' one
-			done
-			read -n1 -r -p $'\n|Index Number [1-5]: ' two
-			while [[ $two -eq $one ]]; do
-				unset two
-				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
-			done
-			redex
-			mchand[one]=${iteration[5]}
-			mchand[two]=${iteration[6]}
+			disone=1
+			distwo=1
+		fi
+		if [[ dis -eq 3 ]]; then
+			disone=1
+			distwo=1
+			disthree=1
 		fi
 
-		if [[ dis -eq 3 ]]; then
-			read -n1 -r -p $'\n|Index Number [1-5]: ' one
-			while [[ one -gt 5 || one -lt 1 ]]; do
-				echo $'>Invalid Input: '
-				unset one
+		if [[ discard -eq 1 ]]; then
+			if [[ disone -eq 1 ]]; then
 				read -n1 -r -p $'\n|Index Number [1-5]: ' one
-			done
-			read -n1 -r -p $'\n|Index Number [1-5]: ' two
-			while [[ $two -eq $one ]]; do
-				unset two
-				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' two
-			done
-			read -n1 -r -p $'\n|Index Number [1-5]: ' three
-			while [[ $three -eq $one || $three -eq $two ]]; do
-				unset three
-				read -n1 -r -p $'\n>Invalid, Select. [1-5]: ' three
-			done
-			redex
-			mchand[one]=${iteration[5]}
-			mchand[two]=${iteration[6]}
-			mchand[three]=${iteration[7]}
+				while [[ ! $one =~ $re ]]; do
+					echo $'>Invalid Input: '
+					unset one
+					read -n1 -r -p $'\n|Index Number [1-5]: ' one
+				done
+				redex
+				mchand[one]=${iteration[5]}
+			fi
+
+			if [[ distwo -eq 1 ]]; then
+				read -n1 -r -p $'\n|Index Number [1-5]: ' two
+				while [[ ! $two =~ $re || $two -eq $one ]]; do
+					echo $'>Invalid Input: '
+					unset two
+					read -n1 -r -p $'\n|Index Number [1-5]: ' two
+				done
+				redex
+				mchand[two]=${iteration[6]}
+			fi
+
+			if [[ disthree -eq 1 ]]; then
+				read -n1 -r -p $'\n|Index Number [1-5]: ' three
+				while [[ ! $three =~ $re || $three -eq $one || $three -eq $two ]]; do
+					echo $'>Invalid Input: '
+					unset three
+					read -n1 -r -p $'\n|Index Number [1-5]: ' three
+				done
+				redex
+				mchand[three]=${iteration[7]}
+			fi
 		fi
 	fi
-
-	##echo $'\n'
 
 	ruffle
 
@@ -335,70 +305,30 @@ ifcalc() {
 	display[3]=":  "
 	display[4]=":  "
 
-	if [[ "$num1" == "1" ]]; then
-		num1="Ace"
-	fi
-	if [[ "$num1" == "11" ]]; then
-		num1="Jack"
-	fi
-	if [[ "$num1" == "12" ]]; then
-		num1="Queen"
-	fi
-	if [[ "$num1" == "13" ]]; then
-		num1="King"
-	fi
+	[[ "$num1" == "1" ]] && num1="Ace"
+	[[ "$num1" == "11" ]] && num1="Jack"
+	[[ "$num1" == "12" ]] && num1="Queen"
+	[[ "$num1" == "13" ]] && num1="King"
 
-	if [[ "$num2" == "1" ]]; then
-		num2="Ace"
-	fi
-	if [[ "$num2" == "11" ]]; then
-		num2="Jack"
-	fi
-	if [[ "$num2" == "12" ]]; then
-		num2="Queen"
-	fi
-	if [[ "$num2" == "13" ]]; then
-		num2="King"
-	fi
+	[[ "$num2" == "1" ]] && num2="Ace"
+	[[ "$num2" == "11" ]] && num2="Jack"
+	[[ "$num2" == "12" ]] && num2="Queen"
+	[[ "$num2" == "13" ]] && num2="King"
 
-	if [[ "$num3" == "1" ]]; then
-		num3="Ace"
-	fi
-	if [[ "$num3" == "11" ]]; then
-		num3="Jack"
-	fi
-	if [[ "$num3" == "12" ]]; then
-		num3="Queen"
-	fi
-	if [[ "$num3" == "13" ]]; then
-		num3="King"
-	fi
+	[[ "$num3" == "1" ]] && num3="Ace"
+	[[ "$num3" == "11" ]] && num3="Jack"
+	[[ "$num3" == "12" ]] && num3="Queen"
+	[[ "$num3" == "13" ]] && num3="King"
 
-	if [[ "$num4" == "1" ]]; then
-		num4="Ace"
-	fi
-	if [[ "$num4" == "11" ]]; then
-		num4="Jack"
-	fi
-	if [[ "$num4" == "12" ]]; then
-		num4="Queen"
-	fi
-	if [[ "$num4" == "13" ]]; then
-		num4="King"
-	fi
+	[[ "$num4" == "1" ]] && num4="Ace"
+	[[ "$num4" == "11" ]] && num4="Jack"
+	[[ "$num4" == "12" ]] && num4="Queen"
+	[[ "$num4" == "13" ]] && num4="King"
 
-	if [[ "$num5" == "1" ]]; then
-		num5="Ace"
-	fi
-	if [[ "$num5" == "11" ]]; then
-		num5="Jack"
-	fi
-	if [[ "$num5" == "12" ]]; then
-		num5="Queen"
-	fi
-	if [[ "$num5" == "13" ]]; then
-		num5="King"
-	fi
+	[[ "$num5" == "1" ]] && num5="Ace"
+	[[ "$num5" == "11" ]] && num5="Jack"
+	[[ "$num5" == "12" ]] && num5="Queen"
+	[[ "$num5" == "13" ]] && num5="King"
 
 }
 
@@ -644,12 +574,16 @@ iswin() {
 	echo "-------------------------------"
 	echo ""
 
-	if [[ "$high" -eq 1 ]]; then
-		echo "$flag $value"
-	fi
-	if [[ "$high" -eq 0 ]]; then
-		echo "$value $flag"
-	fi
+	##if [[ "$high" -eq 1 ]]; then
+	##	echo "$flag $value"
+	##fi
+	##if [[ "$high" -eq 0 ]]; then
+	##	echo "$value $flag"
+	##fi
+
+	[[ "$high" -eq 1 ]] && echo "$flag $value"
+
+	[[ "$high" -eq 0 ]] && echo "$value $flag"
 
 	echo ""
 

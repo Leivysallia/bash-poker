@@ -1,36 +1,28 @@
 #!/bin/bash
 
-source vars.bash
-source functions.bash
-shuffle() {
-    IFS=$'\n'
-    mapfile -t used < <(shuf -i 0-51 -n10)
-    unset IFS
+keepsuggests() {
 
-    for iter in "${used[@]}"; do
-        iteration+=("${library[iter]}")
+    read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
+    while [[ "$keep" != "1" && "$keep" != "0" ]]; do
+        echo $'>Invalid Input: '
+        unset keep
+        read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
     done
-}
-ruffle() {
-
-    IFS=$'\n'
-    mapfile -t mchand < <(sort -n <<<"${mchand[*]}")
-    unset IFS
 
 }
-deal() {
-    mchand[0]="${iteration[0]}"
-    mchand[1]="${iteration[1]}"
-    mchand[2]="${iteration[2]}"
-    mchand[3]="${iteration[3]}"
-    mchand[4]="${iteration[4]}"
-    ruffle
-}
 
+re='[1-5]'
 
-time shuffle
-time deal
-
-echo "${iteration[@]}"
+read -n1 -r -p $'+How Many to Discard? [0-3]: ' dis
 echo ""
-echo "${mchand[@]}"
+iter=1
+for ((i = 0; i < $dis; i++)); do
+    read -n1 -r -p $'\n|Index Number [1-5]: ' var
+    while [[ ! $var =~ $re ]]; do
+        echo $'>Invalid Input: '
+        unset var
+        read -n1 -r -p $'\n|Index Number [1-5]: ' var
+    done
+    redex
+    mchand[var]=${iteration[5]}
+done
