@@ -2,8 +2,7 @@
 
 clear
 
-source functions.bash
-source vars.bash
+vars
 
 play
 
