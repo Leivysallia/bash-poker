@@ -1,23 +1,26 @@
 #!/bin/bash
+play() {
 
-freshstart
-shuffle
-deal
+    freshstart
+    shuffle
+    deal
 
-ruffle
-var
-ifcalc
-iswin
-varhand
-render
+    ruffle
+    var
+    ifcalc
+    iswin
+    varhand
+    render
 
-mull/hold
+    mull
 
-ruffle
-var
-ifcalc
-iswin
-varhand
-render
+    ruffle
+    var
+    ifcalc
+    iswin
+    varhand
+    render
 
-game
+    game
+
+}

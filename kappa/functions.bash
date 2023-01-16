@@ -30,8 +30,6 @@ deal() {
 	mchand[3]="${iteration[3]}"
 	mchand[4]="${iteration[4]}"
 
-	ruffle
-
 }
 
 var() {
@@ -96,7 +94,7 @@ redex() {
 mull() {
 
 	index=${#hold[@]}
-	##	index=0
+
 	if [[ index -ne 0 ]]; then
 		read -n1 -r -p $'+Keep Suggested? [0/1]: ' keep
 		while [[ "$keep" != "1" && "$keep" != "0" ]]; do
@@ -184,13 +182,9 @@ mull() {
 		fi
 	fi
 
-	ruffle
-
 }
 
 ifcalc() {
-
-	var
 
 	flush=0
 	four1=0
@@ -337,7 +331,6 @@ iswin() {
 	flag=0
 	high=0
 	unset value
-	ifcalc
 
 	## HIGH CODE
 	if [[ "$flag" -eq 0 ]]; then
@@ -574,13 +567,6 @@ iswin() {
 	echo "-------------------------------"
 	echo ""
 
-	##if [[ "$high" -eq 1 ]]; then
-	##	echo "$flag $value"
-	##fi
-	##if [[ "$high" -eq 0 ]]; then
-	##	echo "$value $flag"
-	##fi
-
 	[[ "$high" -eq 1 ]] && echo "$flag $value"
 
 	[[ "$high" -eq 0 ]] && echo "$value $flag"
@@ -599,10 +585,66 @@ varhand() {
 
 }
 
+univarhand() {
+
+	[[ "$class1" == "Hearts" ]] && code1=$(echo -e "\033[1;31m♥\033[0m")
+	[[ "$class2" == "Hearts" ]] && code2=$(echo -e "\033[1;31m♥\033[0m")
+	[[ "$class3" == "Hearts" ]] && code3=$(echo -e "\033[1;31m♥\033[0m")
+	[[ "$class4" == "Hearts" ]] && code4=$(echo -e "\033[1;31m♥\033[0m")
+	[[ "$class5" == "Hearts" ]] && code5=$(echo -e "\033[1;31m♥\033[0m")
+
+	[[ "$class1" == "Diamonds" ]] && code1=$(echo -e "\033[1;31m♦\033[0m")
+	[[ "$class2" == "Diamonds" ]] && code2=$(echo -e "\033[1;31m♦\033[0m")
+	[[ "$class3" == "Diamonds" ]] && code3=$(echo -e "\033[1;31m♦\033[0m")
+	[[ "$class4" == "Diamonds" ]] && code4=$(echo -e "\033[1;31m♦\033[0m")
+	[[ "$class5" == "Diamonds" ]] && code5=$(echo -e "\033[1;31m♦\033[0m")
+
+	[[ "$class1" == "Spades" ]] && code1="$(echo -e "\033[0;36m♠\033[0m")"
+	[[ "$class2" == "Spades" ]] && code2="$(echo -e "\033[0;36m♠\033[0m")"
+	[[ "$class3" == "Spades" ]] && code3="$(echo -e "\033[0;36m♠\033[0m")"
+	[[ "$class4" == "Spades" ]] && code4="$(echo -e "\033[0;36m♠\033[0m")"
+	[[ "$class5" == "Spades" ]] && code5="$(echo -e "\033[0;36m♠\033[0m")"
+
+	[[ "$class1" == "Clubs" ]] && code1="$(echo -e "\033[0;36m♣\033[0m")"
+	[[ "$class2" == "Clubs" ]] && code2="$(echo -e "\033[0;36m♣\033[0m")"
+	[[ "$class3" == "Clubs" ]] && code3="$(echo -e "\033[0;36m♣\033[0m")"
+	[[ "$class4" == "Clubs" ]] && code4="$(echo -e "\033[0;36m♣\033[0m")"
+	[[ "$class5" == "Clubs" ]] && code5="$(echo -e "\033[0;36m♣\033[0m")"
+
+	[[ "$class1" == "Hearts" ]] && class1=$(echo -e "\033[1;31m""$word1"" of ""Hearts""\033[0m")
+	[[ "$class2" == "Hearts" ]] && class2=$(echo -e "\033[1;31m""$word2"" of ""Hearts""\033[0m")
+	[[ "$class3" == "Hearts" ]] && class3=$(echo -e "\033[1;31m""$word3"" of ""Hearts""\033[0m")
+	[[ "$class4" == "Hearts" ]] && class4=$(echo -e "\033[1;31m""$word4"" of ""Hearts""\033[0m")
+	[[ "$class5" == "Hearts" ]] && class5=$(echo -e "\033[1;31m""$word5"" of ""Hearts""\033[0m")
+
+	[[ "$class1" == "Diamonds" ]] && class1=$(echo -e "\033[1;31m""$word1"" of ""Diamonds""\033[0m")
+	[[ "$class2" == "Diamonds" ]] && class2=$(echo -e "\033[1;31m""$word2"" of ""Diamonds""\033[0m")
+	[[ "$class3" == "Diamonds" ]] && class3=$(echo -e "\033[1;31m""$word3"" of ""Diamonds""\033[0m")
+	[[ "$class4" == "Diamonds" ]] && class4=$(echo -e "\033[1;31m""$word4"" of ""Diamonds""\033[0m")
+	[[ "$class5" == "Diamonds" ]] && class5=$(echo -e "\033[1;31m""$word5"" of ""Diamonds""\033[0m")
+
+	[[ "$class1" == "Spades" ]] && class1="$(echo -e "\033[0;36m""$word1"" of ""Spades""\033[0m")"
+	[[ "$class2" == "Spades" ]] && class2="$(echo -e "\033[0;36m""$word2"" of ""Spades""\033[0m")"
+	[[ "$class3" == "Spades" ]] && class3="$(echo -e "\033[0;36m""$word3"" of ""Spades""\033[0m")"
+	[[ "$class4" == "Spades" ]] && class4="$(echo -e "\033[0;36m""$word4"" of ""Spades""\033[0m")"
+	[[ "$class5" == "Spades" ]] && class5="$(echo -e "\033[0;36m""$word5"" of ""Spades""\033[0m")"
+
+	[[ "$class1" == "Clubs" ]] && class1="$(echo -e "\033[0;36m""$word1"" of ""Clubs""\033[0m")"
+	[[ "$class2" == "Clubs" ]] && class2="$(echo -e "\033[0;36m""$word2"" of ""Clubs""\033[0m")"
+	[[ "$class3" == "Clubs" ]] && class3="$(echo -e "\033[0;36m""$word3"" of ""Clubs""\033[0m")"
+	[[ "$class4" == "Clubs" ]] && class4="$(echo -e "\033[0;36m""$word4"" of ""Clubs""\033[0m")"
+	[[ "$class5" == "Clubs" ]] && class5="$(echo -e "\033[0;36m""$word5"" of ""Clubs""\033[0m")"
+
+	hand[0]="$code1 | ""$class1"
+	hand[1]="$code2 | ""$class2"
+	hand[2]="$code3 | ""$class3"
+	hand[3]="$code4 | ""$class4"
+	hand[4]="$code5 | ""$class5"
+
+}
+
 render() {
 
-	iswin
-	varhand
 	echo "1""${display[0]}""${hand[0]}"
 	echo "2""${display[1]}""${hand[1]}"
 	echo "3""${display[2]}""${hand[2]}"
@@ -651,13 +693,6 @@ hold() {
 
 game() {
 
-	freshstart
-	shuffle
-	deal
-	render
-	mull
-	render
-
 	source reset.bash
 	source vars.bash
 	echo "-------------------------------"
@@ -671,5 +706,31 @@ game() {
 		unset "hold[@]"
 	fi
 	echo ""
+
+}
+
+play() {
+
+	freshstart
+	shuffle
+	deal
+
+	ruffle
+	var
+	ifcalc
+	iswin
+	univarhand
+	render
+
+	mull
+
+	ruffle
+	var
+	ifcalc
+	iswin
+	univarhand
+	render
+
+	game
 
 }
