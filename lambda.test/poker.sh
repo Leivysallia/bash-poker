@@ -3,6 +3,7 @@
 freshstart() {
 
 	clear
+	printf %s "$default"
 
 }
 
@@ -26,7 +27,9 @@ vars() {
 	unset disone
 	unset distwo
 	unset disthree
-
+	magenta=$(tput setaf 1 || tput AF 1)
+	cyan=$(tput setaf 6 || tput AF 6)
+	default=$(tput op)
 	library[0]="1 of Spades"
 	library[1]="2 of Spades"
 	library[2]="3 of Spades"
@@ -80,372 +83,428 @@ vars() {
 	library[50]="2 of Hearts"
 	library[51]="1 of Hearts"
 
-	acediamonds="┌┈┈┈┐
-    |♦--|
-    |-A-|
-    |--♦|
-    └┈┈┈┘
-"
-	twodiamonds="┌┈┈┈┐
-    |♦--|
-    |-2-|
-    |--♦|
-    └┈┈┈┘
-"
-	threediamonds="┌┈┈┈┐
-    |♦--|
-    |-3-|
-    |--♦|
-    └┈┈┈┘
-"
-	fourdiamonds="┌┈┈┈┐
-    |♦--|
-    |-4-|
-    |--♦|
-    └┈┈┈┘
-"
-	fivediamonds="┌┈┈┈┐
-    |♦--|
-    |-5-|
-    |--♦|
-    └┈┈┈┘
-"
-	sixdiamonds="┌┈┈┈┐
-    |♦--|
-    |-6-|
-    |--♦|
-    └┈┈┈┘
-"
-	sevendiamonds="┌┈┈┈┐
-    |♦--|
-    |-7-|
-    |--♦|
-    └┈┈┈┘
-"
-	eightdiamonds="┌┈┈┈┐
-    |♦--|
-    |-8-|
-    |--♦|
-    └┈┈┈┘
-"
-	ninediamonds="┌┈┈┈┐
-    |♦--|
-    |-9-|
-    |--♦|
-    └┈┈┈┘
-"
-	tendiamonds="┌┈┈┈┐
-    |♦--|
-    |-X-|
-    |--♦|
-    └┈┈┈┘
-"
-	jackdiamonds="┌┈┈┈┐
-    |♦--|
-    |-J-|
-    |--♦|
-    └┈┈┈┘
-"
-	queendiamonds="┌┈┈┈┐
-    |♦--|
-    |-Q-|
-    |--♦|
-    └┈┈┈┘
-"
-	kingdiamonds="┌┈┈┈┐
-    |♦--|
-    |-K-|
-    |--♦|
-    └┈┈┈┘
-"
-	acehearts="┌┈┈┈┐
-    |♥--|
-    |-A-|
-    |--♥|
-    └┈┈┈┘
-"
-	twohearts="┌┈┈┈┐
-    |♥--|
-    |-2-|
-    |--♥|
-    └┈┈┈┘
-"
-	threehearts="┌┈┈┈┐
-    |♥--|
-    |-3-|
-    |--♥|
-    └┈┈┈┘
-"
-	fourhearts="┌┈┈┈┐
-    |♥--|
-    |-4-|
-    |--♥|
-    └┈┈┈┘
-"
-	fivehearts="┌┈┈┈┐
-    |♥--|
-    |-5-|
-    |--♥|
-    └┈┈┈┘
-"
-	sixhearts="┌┈┈┈┐
-    |♥--|
-    |-6-|
-    |--♥|
-    └┈┈┈┘
-"
-	sevenhearts="┌┈┈┈┐
-    |♥--|
-    |-7-|
-    |--♥|
-    └┈┈┈┘
-"
-	eighthearts="┌┈┈┈┐
-    |♥--|
-    |-8-|
-    |--♥|
-    └┈┈┈┘
-"
-	ninehearts="┌┈┈┈┐
-    |♥--|
-    |-9-|
-    |--♥|
-    └┈┈┈┘
-"
-	tenhearts="┌┈┈┈┐
-    |♥--|
-    |-X-|
-    |--♥|
-    └┈┈┈┘
-"
-	jackhearts="┌┈┈┈┐
-    |♥--|
-    |-J-|
-    |--♥|
-    └┈┈┈┘
-"
-	queenhearts="┌┈┈┈┐
-    |♥--|
-    |-Q-|
-    |--♥|
-    └┈┈┈┘
-"
-	kinghearts="┌┈┈┈┐
-    |♥--|
-    |-K-|
-    |--♥|
-    └┈┈┈┘
-"
-	acespades="┌┈┈┈┐
-    |♠--|
-    |-A-|
-    |--♠|
-    └┈┈┈┘
-"
-	twospades="┌┈┈┈┐
-    |♠--|
-    |-2-|
-    |--♠|
-    └┈┈┈┘
-"
-	threespades="┌┈┈┈┐
-    |♠--|
-    |-3-|
-    |--♠|
-    └┈┈┈┘
-"
-	fourspades="┌┈┈┈┐
-    |♠--|
-    |-4-|
-    |--♠|
-    └┈┈┈┘
-"
-	fivespades="┌┈┈┈┐
-    |♠--|
-    |-5-|
-    |--♠|
-    └┈┈┈┘
-"
-	sixspades="┌┈┈┈┐
-    |♠--|
-    |-6-|
-    |--♠|
-    └┈┈┈┘
-"
-	sevenspades="┌┈┈┈┐
-    |♠--|
-    |-7-|
-    |--♠|
-    └┈┈┈┘
-"
-	eightspades="┌┈┈┈┐
-    |♠--|
-    |-8-|
-    |--♠|
-    └┈┈┈┘
-"
-	ninespades="┌┈┈┈┐
-    |♠--|
-    |-9-|
-    |--♠|
-    └┈┈┈┘
-"
-	tenspades="┌┈┈┈┐
-    |♠--|
-    |-X-|
-    |--♠|
-    └┈┈┈┘
-"
-	jackspades="┌┈┈┈┐
-    |♠--|
-    |-J-|
-    |--♠|
-    └┈┈┈┘
-"
-	queenspades="┌┈┈┈┐
-    |♠--|
-    |-Q-|
-    |--♠|
-    └┈┈┈┘
-"
-	kingspades="┌┈┈┈┐
-    |♠--|
-    |-K-|
-    |--♠|
-    └┈┈┈┘
-"
-	aceclubs="┌┈┈┈┐
-    |♣--|
-    |-A-|
-    |--♣|
-    └┈┈┈┘
-"
-	twoclubs="┌┈┈┈┐
-    |♣--|
-    |-2-|
-    |--♣|
-    └┈┈┈┘
-"
-	threeclubs="┌┈┈┈┐
-    |♣--|
-    |-3-|
-    |--♣|
-    └┈┈┈┘
-"
-	fourclubs="┌┈┈┈┐
-    |♣--|
-    |-4-|
-    |--♣|
-    └┈┈┈┘
-"
-	fiveclubs="┌┈┈┈┐
-    |♣--|
-    |-5-|
-    |--♣|
-    └┈┈┈┘
-"
-	sixclubs="┌┈┈┈┐
-    |♣--|
-    |-6-|
-    |--♣|
-    └┈┈┈┘
-"
-	sevenclubs="┌┈┈┈┐
-    |♣--|
-    |-7-|
-    |--♣|
-    └┈┈┈┘
-"
-	eightclubs="┌┈┈┈┐
-    |♣--|
-    |-8-|
-    |--♣|
-    └┈┈┈┘
-"
-	nineclubs="┌┈┈┈┐
-    |♣--|
-    |-9-|
-    |--♣|
-    └┈┈┈┘
-"
-	tenclubs="┌┈┈┈┐
-    |♣--|
-    |-X-|
-    |--♣|
-    └┈┈┈┘
-"
-	jackclubs="┌┈┈┈┐
-    |♣--|
-    |-J-|
-    |--♣|
-    └┈┈┈┘
-"
-	queenclubs="┌┈┈┈┐
-    |♣--|
-    |-Q-|
-    |--♣|
-    └┈┈┈┘
-"
-	kingclubs="┌┈┈┈┐
-    |♣--|
-    |-K-|
-    |--♣|
-    └┈┈┈┘
-"
+	acediamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-A-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	twodiamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-2-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	threediamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-3-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	fourdiamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-4-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	fivediamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-5-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	sixdiamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-6-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	sevendiamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-7-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	eightdiamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-8-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	ninediamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-9-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	tendiamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-X-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	jackdiamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-J-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	queendiamonds="$magentav┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-Q-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	kingdiamonds="$magenta┌┈┈┈┐
+    $magenta|♦--|
+    $magenta|-K-|
+    $magenta|--♦|
+    $magenta└┈┈┈┘
+$default"
+	acehearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-A-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	twohearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-2-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	threehearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-3-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	fourhearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-4-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	fivehearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-5-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	sixhearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-6-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	sevenhearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-7-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	eighthearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-8-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	ninehearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-9-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	tenhearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-X-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	jackhearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-J-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	queenhearts="$magenta┌┈┈┈┐
+    $magenta|♥--|
+    $magenta|-Q-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	kinghearts="$magenta┌┈┈┈┐
+   $magenta |♥--|
+    $magenta|-K-|
+    $magenta|--♥|
+    $magenta└┈┈┈┘
+$default"
+	acespades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-A-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	twospades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-2-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	threespades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-3-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	fourspades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-4-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	fivespades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-5-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	sixspades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-6-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	sevenspades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-7-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	eightspades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-8-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	ninespades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-9-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	tenspades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-X-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	jackspades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-J-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	queenspades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-Q-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	kingspades="$cyan┌┈┈┈┐
+    $cyan|♠--|
+    $cyan|-K-|
+    $cyan|--♠|
+    $cyan└┈┈┈┘
+$default"
+	aceclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-A-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	twoclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-2-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	threeclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-3-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	fourclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-4-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	fiveclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-5-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	sixclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-6-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	sevenclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-7-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	eightclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-8-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	nineclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-9-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	tenclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-X-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	jackclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-J-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	queenclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-Q-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
+	kingclubs="$cyan┌┈┈┈┐
+    $cyan|♣--|
+    $cyan|-K-|
+    $cyan|--♣|
+    $cyan└┈┈┈┘
+$default"
 
-	acediamonds=$(echo -e "\033[1;31m$acediamonds\033[0m")
-	twodiamonds=$(echo -e "\033[1;31m$twodiamonds\033[0m")
-	threediamonds=$(echo -e "\033[1;31m$threediamonds\033[0m")
-	fourdiamonds=$(echo -e "\033[1;31m$fourdiamonds\033[0m")
-	fivediamonds=$(echo -e "\033[1;31m$fivediamonds\033[0m")
-	sixdiamonds=$(echo -e "\033[1;31m$sixdiamonds\033[0m")
-	sevendiamonds=$(echo -e "\033[1;31m$sevendiamonds\033[0m")
-	eightdiamonds=$(echo -e "\033[1;31m$eightdiamonds\033[0m")
-	ninediamonds=$(echo -e "\033[1;31m$ninediamonds\033[0m")
-	tendiamonds=$(echo -e "\033[1;31m$tendiamonds\033[0m")
-	jackdiamonds=$(echo -e "\033[1;31m$jackdiamonds\033[0m")
-	queendiamonds=$(echo -e "\033[1;31m$queendiamonds\033[0m")
-	kingdiamonds=$(echo -e "\033[1;31m$kingdiamonds\033[0m")
-	acehearts=$(echo -e "\033[1;31m$acehearts\033[0m")
-	twohearts=$(echo -e "\033[1;31m$twohearts\033[0m")
-	threehearts=$(echo -e "\033[1;31m$threehearts\033[0m")
-	fourhearts=$(echo -e "\033[1;31m$fourhearts\033[0m")
-	fivehearts=$(echo -e "\033[1;31m$fivehearts\033[0m")
-	sixhearts=$(echo -e "\033[1;31m$sixhearts\033[0m")
-	sevenhearts=$(echo -e "\033[1;31m$sevenhearts\033[0m")
-	eighthearts=$(echo -e "\033[1;31m$eighthearts\033[0m")
-	ninehearts=$(echo -e "\033[1;31m$ninehearts\033[0m")
-	tenhearts=$(echo -e "\033[1;31m$tenhearts\033[0m")
-	jackhearts=$(echo -e "\033[1;31m$jackhearts\033[0m")
-	queenhearts=$(echo -e "\033[1;31m$queenhearts\033[0m")
-	kinghearts=$(echo -e "\033[1;31m$kinghearts\033[0m")
-	aceclubs=$(echo -e "\033[0;36m$aceclubs\033[0m")
-	twoclubs=$(echo -e "\033[0;36m$twoclubs\033[0m")
-	threeclubs=$(echo -e "\033[0;36m$threeclubs\033[0m")
-	fourclubs=$(echo -e "\033[0;36m$fourclubs\033[0m")
-	fiveclubs=$(echo -e "\033[0;36m$fiveclubs\033[0m")
-	sixclubs=$(echo -e "\033[0;36m$sixclubs\033[0m")
-	sevenclubs=$(echo -e "\033[0;36m$sevenclubs\033[0m")
-	eightclubs=$(echo -e "\033[0;36m$eightclubs\033[0m")
-	nineclubs=$(echo -e "\033[0;36m$nineclubs\033[0m")
-	tenclubs=$(echo -e "\033[0;36m$tenclubs\033[0m")
-	jackclubs=$(echo -e "\033[0;36m$jackclubs\033[0m")
-	queenclubs=$(echo -e "\033[0;36m$queenclubs\033[0m")
-	kingclubs=$(echo -e "\033[0;36m$kingclubs\033[0m")
-	acespades=$(echo -e "\033[0;36m$acespades\033[0m")
-	twospades=$(echo -e "\033[0;36m$twospades\033[0m")
-	threespades=$(echo -e "\033[0;36m$threespades\033[0m")
-	fourspades=$(echo -e "\033[0;36m$fourspades\033[0m")
-	fivespades=$(echo -e "\033[0;36m$fivespades\033[0m")
-	sixspades=$(echo -e "\033[0;36m$sixspades\033[0m")
-	sevenspades=$(echo -e "\033[0;36m$sevenspades\033[0m")
-	eightspades=$(echo -e "\033[0;36m$eightspades\033[0m")
-	ninespades=$(echo -e "\033[0;36m$ninespades\033[0m")
-	tenspades=$(echo -e "\033[0;36m$tenspades\033[0m")
-	jackspades=$(echo -e "\033[0;36m$jackspades\033[0m")
-	queenspades=$(echo -e "\033[0;36m$queenspades\033[0m")
-	kingspades=$(echo -e "\033[0;36m$kingspades\033[0m")
 
+if false; then
+	acediamonds="$magenta$acediamonds"
+	twodiamonds="$magenta$twodiamonds"
+	threediamonds="$magenta$threediamonds"
+	fourdiamonds="$magenta$fourdiamonds"
+	fivediamonds="$magenta$fivediamonds"
+	sixdiamonds="$magenta$sixdiamonds"
+	sevendiamonds="$magenta$sevendiamonds"
+	eightdiamonds="$magenta$eightdiamonds"
+	ninediamonds="$magenta$ninediamonds"
+	tendiamonds="$magenta$tendiamonds"
+	jackdiamonds="$magenta$jackdiamonds"
+	queendiamonds="$magenta$queendiamonds"
+	kingdiamonds="$magenta$kingdiamonds"
+	acehearts="$magenta$acehearts"
+	twohearts="$magenta$twohearts"
+	threehearts="$magenta$threehearts"
+	fourhearts="$magenta$fourhearts"
+	fivehearts="$magenta$fivehearts"
+	sixhearts="$magenta$sixhearts"
+	sevenhearts="$magenta$sevenhearts"
+	eighthearts="$magenta$eighthearts"
+	ninehearts="$magenta$ninehearts"
+	tenhearts="$magenta$tenhearts"
+	jackhearts="$magenta$jackhearts"
+	queenhearts="$magenta$queenhearts"
+	kinghearts="$magenta$kinghearts"
+	aceclubs="$cyan$aceclubs"
+	twoclubs="$cyan$twoclubs"
+	threeclubs="$cyan$threeclubs"
+	fourclubs="$cyan$fourclubs"
+	fiveclubs="$cyan$fiveclubs"
+	sixclubs="$cyan$sixclubs"
+	sevenclubs="$cyan$sevenclubs"
+	eightclubs="$cyan$eightclubs"
+	nineclubs="$cyan$nineclubs"
+	tenclubs="$cyan$tenclubs"
+	jackclubs="$cyan$jackclubs"
+	queenclubs="$cyan$queenclubs"
+	kingclubs="$cyan$kingclubs"
+	acespades="$cyan$acespades"
+	twospades="$cyan$twospades"
+	threespades="$cyan$threespades"
+	fourspades="$cyan$fourspades"
+	fivespades="$cyan$fivespades"
+	sixspades="$cyan$sixspades"
+	sevenspades="$cyan$sevenspades"
+	eightspades="$cyan$eightspades"
+	ninespades="$cyan$ninespades"
+	tenspades="$cyan$tenspades"
+	jackspades="$cyan$jackspades"
+	queenspades="$cyan$queenspades"
+	kingspades="$cyan$kingspades"
+
+	
+		acediamonds=$(echo -e "\033[1;31m$acediamonds\033[0m")
+		twodiamonds=$(echo -e "\033[1;31m$twodiamonds\033[0m")
+		threediamonds=$(echo -e "\033[1;31m$threediamonds\033[0m")
+		fourdiamonds=$(echo -e "\033[1;31m$fourdiamonds\033[0m")
+		fivediamonds=$(echo -e "\033[1;31m$fivediamonds\033[0m")
+		sixdiamonds=$(echo -e "\033[1;31m$sixdiamonds\033[0m")
+		sevendiamonds=$(echo -e "\033[1;31m$sevendiamonds\033[0m")
+		eightdiamonds=$(echo -e "\033[1;31m$eightdiamonds\033[0m")
+		ninediamonds=$(echo -e "\033[1;31m$ninediamonds\033[0m")
+		tendiamonds=$(echo -e "\033[1;31m$tendiamonds\033[0m")
+		jackdiamonds=$(echo -e "\033[1;31m$jackdiamonds\033[0m")
+		queendiamonds=$(echo -e "\033[1;31m$queendiamonds\033[0m")
+		kingdiamonds=$(echo -e "\033[1;31m$kingdiamonds\033[0m")
+		acehearts=$(echo -e "\033[1;31m$acehearts\033[0m")
+		twohearts=$(echo -e "\033[1;31m$twohearts\033[0m")
+		threehearts=$(echo -e "\033[1;31m$threehearts\033[0m")
+		fourhearts=$(echo -e "\033[1;31m$fourhearts\033[0m")
+		fivehearts=$(echo -e "\033[1;31m$fivehearts\033[0m")
+		sixhearts=$(echo -e "\033[1;31m$sixhearts\033[0m")
+		sevenhearts=$(echo -e "\033[1;31m$sevenhearts\033[0m")
+		eighthearts=$(echo -e "\033[1;31m$eighthearts\033[0m")
+		ninehearts=$(echo -e "\033[1;31m$ninehearts\033[0m")
+		tenhearts=$(echo -e "\033[1;31m$tenhearts\033[0m")
+		jackhearts=$(echo -e "\033[1;31m$jackhearts\033[0m")
+		queenhearts=$(echo -e "\033[1;31m$queenhearts\033[0m")
+		kinghearts=$(echo -e "\033[1;31m$kinghearts\033[0m")
+		aceclubs=$(echo -e "\033[0;36m$aceclubs\033[0m")
+		twoclubs=$(echo -e "\033[0;36m$twoclubs\033[0m")
+		threeclubs=$(echo -e "\033[0;36m$threeclubs\033[0m")
+		fourclubs=$(echo -e "\033[0;36m$fourclubs\033[0m")
+		fiveclubs=$(echo -e "\033[0;36m$fiveclubs\033[0m")
+		sixclubs=$(echo -e "\033[0;36m$sixclubs\033[0m")
+		sevenclubs=$(echo -e "\033[0;36m$sevenclubs\033[0m")
+		eightclubs=$(echo -e "\033[0;36m$eightclubs\033[0m")
+		nineclubs=$(echo -e "\033[0;36m$nineclubs\033[0m")
+		tenclubs=$(echo -e "\033[0;36m$tenclubs\033[0m")
+		jackclubs=$(echo -e "\033[0;36m$jackclubs\033[0m")
+		queenclubs=$(echo -e "\033[0;36m$queenclubs\033[0m")
+		kingclubs=$(echo -e "\033[0;36m$kingclubs\033[0m")
+		acespades=$(echo -e "\033[0;36m$acespades\033[0m")
+		twospades=$(echo -e "\033[0;36m$twospades\033[0m")
+		threespades=$(echo -e "\033[0;36m$threespades\033[0m")
+		fourspades=$(echo -e "\033[0;36m$fourspades\033[0m")
+		fivespades=$(echo -e "\033[0;36m$fivespades\033[0m")
+		sixspades=$(echo -e "\033[0;36m$sixspades\033[0m")
+		sevenspades=$(echo -e "\033[0;36m$sevenspades\033[0m")
+		eightspades=$(echo -e "\033[0;36m$eightspades\033[0m")
+		ninespades=$(echo -e "\033[0;36m$ninespades\033[0m")
+		tenspades=$(echo -e "\033[0;36m$tenspades\033[0m")
+		jackspades=$(echo -e "\033[0;36m$jackspades\033[0m")
+		queenspades=$(echo -e "\033[0;36m$queenspades\033[0m")
+		kingspades=$(echo -e "\033[0;36m$kingspades\033[0m")
+	fi
 	display[0]=":  "
 	display[1]=":  "
 	display[2]=":  "
@@ -1120,11 +1179,11 @@ cardvarhand() {
 	[[ word5 -eq 9 ]] && word5=nine
 	[[ word5 -eq 10 ]] && word5=ten
 
-	hand[0]=$(echo "$word1$class1" | tr '[:upper:]' '[:lower:]')
-	hand[1]=$(echo "$word2$class2" | tr '[:upper:]' '[:lower:]')
-	hand[2]=$(echo "$word3$class3" | tr '[:upper:]' '[:lower:]')
-	hand[3]=$(echo "$word4$class4" | tr '[:upper:]' '[:lower:]')
-	hand[4]=$(echo "$word5$class5" | tr '[:upper:]' '[:lower:]')
+	handzero=$(echo "$word1$class1" | tr '[:upper:]' '[:lower:]')
+	handone=$(echo "$word2$class2" | tr '[:upper:]' '[:lower:]')
+	handtwo=$(echo "$word3$class3" | tr '[:upper:]' '[:lower:]')
+	handthree=$(echo "$word4$class4" | tr '[:upper:]' '[:lower:]')
+	handfour=$(echo "$word5$class5" | tr '[:upper:]' '[:lower:]')
 
 }
 
@@ -1209,381 +1268,657 @@ render() {
 
 cardrender() {
 
+	if false; then
+		[[ "${hand[0]}" == "acespades" ]] && hand[0]=$acespades
+		[[ "${hand[0]}" == "twospades" ]] && hand[0]=$twospades
+		[[ "${hand[0]}" == "threespades" ]] && hand[0]=$threespades
+		[[ "${hand[0]}" == "fourspades" ]] && hand[0]=$fourspades
+		[[ "${hand[0]}" == "fivespades" ]] && hand[0]=$fivespades
+		[[ "${hand[0]}" == "sixspades" ]] && hand[0]=$sixspades
+		[[ "${hand[0]}" == "sevenspades" ]] && hand[0]=$sevenspades
+		[[ "${hand[0]}" == "eightspades" ]] && hand[0]=$eightspades
+		[[ "${hand[0]}" == "ninespades" ]] && hand[0]=$ninespades
+		[[ "${hand[0]}" == "tenspades" ]] && hand[0]=$tenspades
+		[[ "${hand[0]}" == "jackspades" ]] && hand[0]=$jackspades
+		[[ "${hand[0]}" == "queenspades" ]] && hand[0]=$queenspades
+		[[ "${hand[0]}" == "kingspades" ]] && hand[0]=$kingspades
+		[[ "${hand[0]}" == "aceclubs" ]] && hand[0]=$aceclubs
+		[[ "${hand[0]}" == "twoclubs" ]] && hand[0]=$twoclubs
+		[[ "${hand[0]}" == "threeclubs" ]] && hand[0]=$threeclubs
+		[[ "${hand[0]}" == "fourclubs" ]] && hand[0]=$fourclubs
+		[[ "${hand[0]}" == "fiveclubs" ]] && hand[0]=$fiveclubs
+		[[ "${hand[0]}" == "sixclubs" ]] && hand[0]=$sixclubs
+		[[ "${hand[0]}" == "sevenclubs" ]] && hand[0]=$sevenclubs
+		[[ "${hand[0]}" == "eightclubs" ]] && hand[0]=$eightclubs
+		[[ "${hand[0]}" == "nineclubs" ]] && hand[0]=$nineclubs
+		[[ "${hand[0]}" == "tenclubs" ]] && hand[0]=$tenclubs
+		[[ "${hand[0]}" == "jackclubs" ]] && hand[0]=$jackclubs
+		[[ "${hand[0]}" == "queenclubs" ]] && hand[0]=$queenclubs
+		[[ "${hand[0]}" == "kingclubs" ]] && hand[0]=$kingclubs
+		[[ "${hand[0]}" == "acediamonds" ]] && hand[0]=$acediamonds
+		[[ "${hand[0]}" == "twodiamonds" ]] && hand[0]=$twodiamonds
+		[[ "${hand[0]}" == "threediamonds" ]] && hand[0]=$threediamonds
+		[[ "${hand[0]}" == "fourdiamonds" ]] && hand[0]=$fourdiamonds
+		[[ "${hand[0]}" == "fivediamonds" ]] && hand[0]=$fivediamonds
+		[[ "${hand[0]}" == "sixdiamonds" ]] && hand[0]=$sixdiamonds
+		[[ "${hand[0]}" == "sevendiamonds" ]] && hand[0]=$sevendiamonds
+		[[ "${hand[0]}" == "eightdiamonds" ]] && hand[0]=$eightdiamonds
+		[[ "${hand[0]}" == "ninediamonds" ]] && hand[0]=$ninediamonds
+		[[ "${hand[0]}" == "tendiamonds" ]] && hand[0]=$tendiamonds
+		[[ "${hand[0]}" == "jackdiamonds" ]] && hand[0]=$jackdiamonds
+		[[ "${hand[0]}" == "queendiamonds" ]] && hand[0]=$queendiamonds
+		[[ "${hand[0]}" == "kingdiamonds" ]] && hand[0]=$kingdiamonds
+		[[ "${hand[0]}" == "acehearts" ]] && hand[0]=$acehearts
+		[[ "${hand[0]}" == "twohearts" ]] && hand[0]=$twohearts
+		[[ "${hand[0]}" == "threehearts" ]] && hand[0]=$threehearts
+		[[ "${hand[0]}" == "fourhearts" ]] && hand[0]=$fourhearts
+		[[ "${hand[0]}" == "fivehearts" ]] && hand[0]=$fivehearts
+		[[ "${hand[0]}" == "sixhearts" ]] && hand[0]=$sixhearts
+		[[ "${hand[0]}" == "sevenhearts" ]] && hand[0]=$sevenhearts
+		[[ "${hand[0]}" == "eighthearts" ]] && hand[0]=$eighthearts
+		[[ "${hand[0]}" == "ninehearts" ]] && hand[0]=$ninehearts
+		[[ "${hand[0]}" == "tenhearts" ]] && hand[0]=$tenhearts
+		[[ "${hand[0]}" == "jackhearts" ]] && hand[0]=$jackhearts
+		[[ "${hand[0]}" == "queenhearts" ]] && hand[0]=$queenhearts
+		[[ "${hand[0]}" == "kinghearts" ]] && hand[0]=$kinghearts
+		[[ "${hand[1]}" == "acespades" ]] && hand[1]=$acespades
+		[[ "${hand[1]}" == "twospades" ]] && hand[1]=$twospades
+		[[ "${hand[1]}" == "threespades" ]] && hand[1]=$threespades
+		[[ "${hand[1]}" == "fourspades" ]] && hand[1]=$fourspades
+		[[ "${hand[1]}" == "fivespades" ]] && hand[1]=$fivespades
+		[[ "${hand[1]}" == "sixspades" ]] && hand[1]=$sixspades
+		[[ "${hand[1]}" == "sevenspades" ]] && hand[1]=$sevenspades
+		[[ "${hand[1]}" == "eightspades" ]] && hand[1]=$eightspades
+		[[ "${hand[1]}" == "ninespades" ]] && hand[1]=$ninespades
+		[[ "${hand[1]}" == "tenspades" ]] && hand[1]=$tenspades
+		[[ "${hand[1]}" == "jackspades" ]] && hand[1]=$jackspades
+		[[ "${hand[1]}" == "queenspades" ]] && hand[1]=$queenspades
+		[[ "${hand[1]}" == "kingspades" ]] && hand[1]=$kingspades
+		[[ "${hand[1]}" == "aceclubs" ]] && hand[1]=$aceclubs
+		[[ "${hand[1]}" == "twoclubs" ]] && hand[1]=$twoclubs
+		[[ "${hand[1]}" == "threeclubs" ]] && hand[1]=$threeclubs
+		[[ "${hand[1]}" == "fourclubs" ]] && hand[1]=$fourclubs
+		[[ "${hand[1]}" == "fiveclubs" ]] && hand[1]=$fiveclubs
+		[[ "${hand[1]}" == "sixclubs" ]] && hand[1]=$sixclubs
+		[[ "${hand[1]}" == "sevenclubs" ]] && hand[1]=$sevenclubs
+		[[ "${hand[1]}" == "eightclubs" ]] && hand[1]=$eightclubs
+		[[ "${hand[1]}" == "nineclubs" ]] && hand[1]=$nineclubs
+		[[ "${hand[1]}" == "tenclubs" ]] && hand[1]=$tenclubs
+		[[ "${hand[1]}" == "jackclubs" ]] && hand[1]=$jackclubs
+		[[ "${hand[1]}" == "queenclubs" ]] && hand[1]=$queenclubs
+		[[ "${hand[1]}" == "kingclubs" ]] && hand[1]=$kingclubs
+		[[ "${hand[1]}" == "acediamonds" ]] && hand[1]=$acediamonds
+		[[ "${hand[1]}" == "twodiamonds" ]] && hand[1]=$twodiamonds
+		[[ "${hand[1]}" == "threediamonds" ]] && hand[1]=$threediamonds
+		[[ "${hand[1]}" == "fourdiamonds" ]] && hand[1]=$fourdiamonds
+		[[ "${hand[1]}" == "fivediamonds" ]] && hand[1]=$fivediamonds
+		[[ "${hand[1]}" == "sixdiamonds" ]] && hand[1]=$sixdiamonds
+		[[ "${hand[1]}" == "sevendiamonds" ]] && hand[1]=$sevendiamonds
+		[[ "${hand[1]}" == "eightdiamonds" ]] && hand[1]=$eightdiamonds
+		[[ "${hand[1]}" == "ninediamonds" ]] && hand[1]=$ninediamonds
+		[[ "${hand[1]}" == "tendiamonds" ]] && hand[1]=$tendiamonds
+		[[ "${hand[1]}" == "jackdiamonds" ]] && hand[1]=$jackdiamonds
+		[[ "${hand[1]}" == "queendiamonds" ]] && hand[1]=$queendiamonds
+		[[ "${hand[1]}" == "kingdiamonds" ]] && hand[1]=$kingdiamonds
+		[[ "${hand[1]}" == "acehearts" ]] && hand[1]=$acehearts
+		[[ "${hand[1]}" == "twohearts" ]] && hand[1]=$twohearts
+		[[ "${hand[1]}" == "threehearts" ]] && hand[1]=$threehearts
+		[[ "${hand[1]}" == "fourhearts" ]] && hand[1]=$fourhearts
+		[[ "${hand[1]}" == "fivehearts" ]] && hand[1]=$fivehearts
+		[[ "${hand[1]}" == "sixhearts" ]] && hand[1]=$sixhearts
+		[[ "${hand[1]}" == "sevenhearts" ]] && hand[1]=$sevenhearts
+		[[ "${hand[1]}" == "eighthearts" ]] && hand[1]=$eighthearts
+		[[ "${hand[1]}" == "ninehearts" ]] && hand[1]=$ninehearts
+		[[ "${hand[1]}" == "tenhearts" ]] && hand[1]=$tenhearts
+		[[ "${hand[1]}" == "jackhearts" ]] && hand[1]=$jackhearts
+		[[ "${hand[1]}" == "queenhearts" ]] && hand[1]=$queenhearts
+		[[ "${hand[1]}" == "kinghearts" ]] && hand[1]=$kinghearts
+		[[ "${hand[1]}" == "acespades" ]] && hand[1]=$acespades
+		[[ "${hand[1]}" == "twospades" ]] && hand[1]=$twospades
+		[[ "${hand[1]}" == "threespades" ]] && hand[1]=$threespades
+		[[ "${hand[1]}" == "fourspades" ]] && hand[1]=$fourspades
+		[[ "${hand[1]}" == "fivespades" ]] && hand[1]=$fivespades
+		[[ "${hand[1]}" == "sixspades" ]] && hand[1]=$sixspades
+		[[ "${hand[1]}" == "sevenspades" ]] && hand[1]=$sevenspades
+		[[ "${hand[1]}" == "eightspades" ]] && hand[1]=$eightspades
+		[[ "${hand[1]}" == "ninespades" ]] && hand[1]=$ninespades
+		[[ "${hand[1]}" == "tenspades" ]] && hand[1]=$tenspades
+		[[ "${hand[1]}" == "jackspades" ]] && hand[1]=$jackspades
+		[[ "${hand[1]}" == "queenspades" ]] && hand[1]=$queenspades
+		[[ "${hand[1]}" == "kingspades" ]] && hand[1]=$kingspades
+		[[ "${hand[1]}" == "aceclubs" ]] && hand[1]=$aceclubs
+		[[ "${hand[1]}" == "twoclubs" ]] && hand[1]=$twoclubs
+		[[ "${hand[1]}" == "threeclubs" ]] && hand[1]=$threeclubs
+		[[ "${hand[1]}" == "fourclubs" ]] && hand[1]=$fourclubs
+		[[ "${hand[1]}" == "fiveclubs" ]] && hand[1]=$fiveclubs
+		[[ "${hand[1]}" == "sixclubs" ]] && hand[1]=$sixclubs
+		[[ "${hand[1]}" == "sevenclubs" ]] && hand[1]=$sevenclubs
+		[[ "${hand[1]}" == "eightclubs" ]] && hand[1]=$eightclubs
+		[[ "${hand[1]}" == "nineclubs" ]] && hand[1]=$nineclubs
+		[[ "${hand[1]}" == "tenclubs" ]] && hand[1]=$tenclubs
+		[[ "${hand[1]}" == "jackclubs" ]] && hand[1]=$jackclubs
+		[[ "${hand[1]}" == "queenclubs" ]] && hand[1]=$queenclubs
+		[[ "${hand[1]}" == "kingclubs" ]] && hand[1]=$kingclubs
+		[[ "${hand[1]}" == "acediamonds" ]] && hand[1]=$acediamonds
+		[[ "${hand[1]}" == "twodiamonds" ]] && hand[1]=$twodiamonds
+		[[ "${hand[1]}" == "threediamonds" ]] && hand[1]=$threediamonds
+		[[ "${hand[1]}" == "fourdiamonds" ]] && hand[1]=$fourdiamonds
+		[[ "${hand[1]}" == "fivediamonds" ]] && hand[1]=$fivediamonds
+		[[ "${hand[1]}" == "sixdiamonds" ]] && hand[1]=$sixdiamonds
+		[[ "${hand[1]}" == "sevendiamonds" ]] && hand[1]=$sevendiamonds
+		[[ "${hand[1]}" == "eightdiamonds" ]] && hand[1]=$eightdiamonds
+		[[ "${hand[1]}" == "ninediamonds" ]] && hand[1]=$ninediamonds
+		[[ "${hand[1]}" == "tendiamonds" ]] && hand[1]=$tendiamonds
+		[[ "${hand[1]}" == "jackdiamonds" ]] && hand[1]=$jackdiamonds
+		[[ "${hand[1]}" == "queendiamonds" ]] && hand[1]=$queendiamonds
+		[[ "${hand[1]}" == "kingdiamonds" ]] && hand[1]=$kingdiamonds
+		[[ "${hand[1]}" == "acehearts" ]] && hand[1]=$acehearts
+		[[ "${hand[1]}" == "twohearts" ]] && hand[1]=$twohearts
+		[[ "${hand[1]}" == "threehearts" ]] && hand[1]=$threehearts
+		[[ "${hand[1]}" == "fourhearts" ]] && hand[1]=$fourhearts
+		[[ "${hand[1]}" == "fivehearts" ]] && hand[1]=$fivehearts
+		[[ "${hand[1]}" == "sixhearts" ]] && hand[1]=$sixhearts
+		[[ "${hand[1]}" == "sevenhearts" ]] && hand[1]=$sevenhearts
+		[[ "${hand[1]}" == "eighthearts" ]] && hand[1]=$eighthearts
+		[[ "${hand[1]}" == "ninehearts" ]] && hand[1]=$ninehearts
+		[[ "${hand[1]}" == "tenhearts" ]] && hand[1]=$tenhearts
+		[[ "${hand[1]}" == "jackhearts" ]] && hand[1]=$jackhearts
+		[[ "${hand[1]}" == "queenhearts" ]] && hand[1]=$queenhearts
+		[[ "${hand[1]}" == "kinghearts" ]] && hand[1]=$kinghearts
 
-[[ "${hand[0]}" == "acespades" ]] && hand[0]=$acespades
-[[ "${hand[0]}" == "twospades" ]] && hand[0]=$twospades
-[[ "${hand[0]}" == "threespades" ]] && hand[0]=$threespades
-[[ "${hand[0]}" == "fourspades" ]] && hand[0]=$fourspades
-[[ "${hand[0]}" == "fivespades" ]] && hand[0]=$fivespades
-[[ "${hand[0]}" == "sixspades" ]] && hand[0]=$sixspades
-[[ "${hand[0]}" == "sevenspades" ]] && hand[0]=$sevenspades
-[[ "${hand[0]}" == "eightspades" ]] && hand[0]=$eightspades
-[[ "${hand[0]}" == "ninespades" ]] && hand[0]=$ninespades
-[[ "${hand[0]}" == "tenspades" ]] && hand[0]=$tenspades
-[[ "${hand[0]}" == "jackspades" ]] && hand[0]=$jackspades
-[[ "${hand[0]}" == "queenspades" ]] && hand[0]=$queenspades
-[[ "${hand[0]}" == "kingspades" ]] && hand[0]=$kingspades
-[[ "${hand[0]}" == "aceclubs" ]] && hand[0]=$aceclubs
-[[ "${hand[0]}" == "twoclubs" ]] && hand[0]=$twoclubs
-[[ "${hand[0]}" == "threeclubs" ]] && hand[0]=$threeclubs
-[[ "${hand[0]}" == "fourclubs" ]] && hand[0]=$fourclubs
-[[ "${hand[0]}" == "fiveclubs" ]] && hand[0]=$fiveclubs
-[[ "${hand[0]}" == "sixclubs" ]] && hand[0]=$sixclubs
-[[ "${hand[0]}" == "sevenclubs" ]] && hand[0]=$sevenclubs
-[[ "${hand[0]}" == "eightclubs" ]] && hand[0]=$eightclubs
-[[ "${hand[0]}" == "nineclubs" ]] && hand[0]=$nineclubs
-[[ "${hand[0]}" == "tenclubs" ]] && hand[0]=$tenclubs
-[[ "${hand[0]}" == "jackclubs" ]] && hand[0]=$jackclubs
-[[ "${hand[0]}" == "queenclubs" ]] && hand[0]=$queenclubs
-[[ "${hand[0]}" == "kingclubs" ]] && hand[0]=$kingclubs
-[[ "${hand[0]}" == "acediamonds" ]] && hand[0]=$acediamonds
-[[ "${hand[0]}" == "twodiamonds" ]] && hand[0]=$twodiamonds
-[[ "${hand[0]}" == "threediamonds" ]] && hand[0]=$threediamonds
-[[ "${hand[0]}" == "fourdiamonds" ]] && hand[0]=$fourdiamonds
-[[ "${hand[0]}" == "fivediamonds" ]] && hand[0]=$fivediamonds
-[[ "${hand[0]}" == "sixdiamonds" ]] && hand[0]=$sixdiamonds
-[[ "${hand[0]}" == "sevendiamonds" ]] && hand[0]=$sevendiamonds
-[[ "${hand[0]}" == "eightdiamonds" ]] && hand[0]=$eightdiamonds
-[[ "${hand[0]}" == "ninediamonds" ]] && hand[0]=$ninediamonds
-[[ "${hand[0]}" == "tendiamonds" ]] && hand[0]=$tendiamonds
-[[ "${hand[0]}" == "jackdiamonds" ]] && hand[0]=$jackdiamonds
-[[ "${hand[0]}" == "queendiamonds" ]] && hand[0]=$queendiamonds
-[[ "${hand[0]}" == "kingdiamonds" ]] && hand[0]=$kingdiamonds
-[[ "${hand[0]}" == "acehearts" ]] && hand[0]=$acehearts
-[[ "${hand[0]}" == "twohearts" ]] && hand[0]=$twohearts
-[[ "${hand[0]}" == "threehearts" ]] && hand[0]=$threehearts
-[[ "${hand[0]}" == "fourhearts" ]] && hand[0]=$fourhearts
-[[ "${hand[0]}" == "fivehearts" ]] && hand[0]=$fivehearts
-[[ "${hand[0]}" == "sixhearts" ]] && hand[0]=$sixhearts
-[[ "${hand[0]}" == "sevenhearts" ]] && hand[0]=$sevenhearts
-[[ "${hand[0]}" == "eighthearts" ]] && hand[0]=$eighthearts
-[[ "${hand[0]}" == "ninehearts" ]] && hand[0]=$ninehearts
-[[ "${hand[0]}" == "tenhearts" ]] && hand[0]=$tenhearts
-[[ "${hand[0]}" == "jackhearts" ]] && hand[0]=$jackhearts
-[[ "${hand[0]}" == "queenhearts" ]] && hand[0]=$queenhearts
-[[ "${hand[0]}" == "kinghearts" ]] && hand[0]=$kinghearts
-[[ "${hand[1]}" == "acespades" ]] && hand[1]=$acespades
-[[ "${hand[1]}" == "twospades" ]] && hand[1]=$twospades
-[[ "${hand[1]}" == "threespades" ]] && hand[1]=$threespades
-[[ "${hand[1]}" == "fourspades" ]] && hand[1]=$fourspades
-[[ "${hand[1]}" == "fivespades" ]] && hand[1]=$fivespades
-[[ "${hand[1]}" == "sixspades" ]] && hand[1]=$sixspades
-[[ "${hand[1]}" == "sevenspades" ]] && hand[1]=$sevenspades
-[[ "${hand[1]}" == "eightspades" ]] && hand[1]=$eightspades
-[[ "${hand[1]}" == "ninespades" ]] && hand[1]=$ninespades
-[[ "${hand[1]}" == "tenspades" ]] && hand[1]=$tenspades
-[[ "${hand[1]}" == "jackspades" ]] && hand[1]=$jackspades
-[[ "${hand[1]}" == "queenspades" ]] && hand[1]=$queenspades
-[[ "${hand[1]}" == "kingspades" ]] && hand[1]=$kingspades
-[[ "${hand[1]}" == "aceclubs" ]] && hand[1]=$aceclubs
-[[ "${hand[1]}" == "twoclubs" ]] && hand[1]=$twoclubs
-[[ "${hand[1]}" == "threeclubs" ]] && hand[1]=$threeclubs
-[[ "${hand[1]}" == "fourclubs" ]] && hand[1]=$fourclubs
-[[ "${hand[1]}" == "fiveclubs" ]] && hand[1]=$fiveclubs
-[[ "${hand[1]}" == "sixclubs" ]] && hand[1]=$sixclubs
-[[ "${hand[1]}" == "sevenclubs" ]] && hand[1]=$sevenclubs
-[[ "${hand[1]}" == "eightclubs" ]] && hand[1]=$eightclubs
-[[ "${hand[1]}" == "nineclubs" ]] && hand[1]=$nineclubs
-[[ "${hand[1]}" == "tenclubs" ]] && hand[1]=$tenclubs
-[[ "${hand[1]}" == "jackclubs" ]] && hand[1]=$jackclubs
-[[ "${hand[1]}" == "queenclubs" ]] && hand[1]=$queenclubs
-[[ "${hand[1]}" == "kingclubs" ]] && hand[1]=$kingclubs
-[[ "${hand[1]}" == "acediamonds" ]] && hand[1]=$acediamonds
-[[ "${hand[1]}" == "twodiamonds" ]] && hand[1]=$twodiamonds
-[[ "${hand[1]}" == "threediamonds" ]] && hand[1]=$threediamonds
-[[ "${hand[1]}" == "fourdiamonds" ]] && hand[1]=$fourdiamonds
-[[ "${hand[1]}" == "fivediamonds" ]] && hand[1]=$fivediamonds
-[[ "${hand[1]}" == "sixdiamonds" ]] && hand[1]=$sixdiamonds
-[[ "${hand[1]}" == "sevendiamonds" ]] && hand[1]=$sevendiamonds
-[[ "${hand[1]}" == "eightdiamonds" ]] && hand[1]=$eightdiamonds
-[[ "${hand[1]}" == "ninediamonds" ]] && hand[1]=$ninediamonds
-[[ "${hand[1]}" == "tendiamonds" ]] && hand[1]=$tendiamonds
-[[ "${hand[1]}" == "jackdiamonds" ]] && hand[1]=$jackdiamonds
-[[ "${hand[1]}" == "queendiamonds" ]] && hand[1]=$queendiamonds
-[[ "${hand[1]}" == "kingdiamonds" ]] && hand[1]=$kingdiamonds
-[[ "${hand[1]}" == "acehearts" ]] && hand[1]=$acehearts
-[[ "${hand[1]}" == "twohearts" ]] && hand[1]=$twohearts
-[[ "${hand[1]}" == "threehearts" ]] && hand[1]=$threehearts
-[[ "${hand[1]}" == "fourhearts" ]] && hand[1]=$fourhearts
-[[ "${hand[1]}" == "fivehearts" ]] && hand[1]=$fivehearts
-[[ "${hand[1]}" == "sixhearts" ]] && hand[1]=$sixhearts
-[[ "${hand[1]}" == "sevenhearts" ]] && hand[1]=$sevenhearts
-[[ "${hand[1]}" == "eighthearts" ]] && hand[1]=$eighthearts
-[[ "${hand[1]}" == "ninehearts" ]] && hand[1]=$ninehearts
-[[ "${hand[1]}" == "tenhearts" ]] && hand[1]=$tenhearts
-[[ "${hand[1]}" == "jackhearts" ]] && hand[1]=$jackhearts
-[[ "${hand[1]}" == "queenhearts" ]] && hand[1]=$queenhearts
-[[ "${hand[1]}" == "kinghearts" ]] && hand[1]=$kinghearts
-[[ "${hand[1]}" == "acespades" ]] && hand[1]=$acespades
-[[ "${hand[1]}" == "twospades" ]] && hand[1]=$twospades
-[[ "${hand[1]}" == "threespades" ]] && hand[1]=$threespades
-[[ "${hand[1]}" == "fourspades" ]] && hand[1]=$fourspades
-[[ "${hand[1]}" == "fivespades" ]] && hand[1]=$fivespades
-[[ "${hand[1]}" == "sixspades" ]] && hand[1]=$sixspades
-[[ "${hand[1]}" == "sevenspades" ]] && hand[1]=$sevenspades
-[[ "${hand[1]}" == "eightspades" ]] && hand[1]=$eightspades
-[[ "${hand[1]}" == "ninespades" ]] && hand[1]=$ninespades
-[[ "${hand[1]}" == "tenspades" ]] && hand[1]=$tenspades
-[[ "${hand[1]}" == "jackspades" ]] && hand[1]=$jackspades
-[[ "${hand[1]}" == "queenspades" ]] && hand[1]=$queenspades
-[[ "${hand[1]}" == "kingspades" ]] && hand[1]=$kingspades
-[[ "${hand[1]}" == "aceclubs" ]] && hand[1]=$aceclubs
-[[ "${hand[1]}" == "twoclubs" ]] && hand[1]=$twoclubs
-[[ "${hand[1]}" == "threeclubs" ]] && hand[1]=$threeclubs
-[[ "${hand[1]}" == "fourclubs" ]] && hand[1]=$fourclubs
-[[ "${hand[1]}" == "fiveclubs" ]] && hand[1]=$fiveclubs
-[[ "${hand[1]}" == "sixclubs" ]] && hand[1]=$sixclubs
-[[ "${hand[1]}" == "sevenclubs" ]] && hand[1]=$sevenclubs
-[[ "${hand[1]}" == "eightclubs" ]] && hand[1]=$eightclubs
-[[ "${hand[1]}" == "nineclubs" ]] && hand[1]=$nineclubs
-[[ "${hand[1]}" == "tenclubs" ]] && hand[1]=$tenclubs
-[[ "${hand[1]}" == "jackclubs" ]] && hand[1]=$jackclubs
-[[ "${hand[1]}" == "queenclubs" ]] && hand[1]=$queenclubs
-[[ "${hand[1]}" == "kingclubs" ]] && hand[1]=$kingclubs
-[[ "${hand[1]}" == "acediamonds" ]] && hand[1]=$acediamonds
-[[ "${hand[1]}" == "twodiamonds" ]] && hand[1]=$twodiamonds
-[[ "${hand[1]}" == "threediamonds" ]] && hand[1]=$threediamonds
-[[ "${hand[1]}" == "fourdiamonds" ]] && hand[1]=$fourdiamonds
-[[ "${hand[1]}" == "fivediamonds" ]] && hand[1]=$fivediamonds
-[[ "${hand[1]}" == "sixdiamonds" ]] && hand[1]=$sixdiamonds
-[[ "${hand[1]}" == "sevendiamonds" ]] && hand[1]=$sevendiamonds
-[[ "${hand[1]}" == "eightdiamonds" ]] && hand[1]=$eightdiamonds
-[[ "${hand[1]}" == "ninediamonds" ]] && hand[1]=$ninediamonds
-[[ "${hand[1]}" == "tendiamonds" ]] && hand[1]=$tendiamonds
-[[ "${hand[1]}" == "jackdiamonds" ]] && hand[1]=$jackdiamonds
-[[ "${hand[1]}" == "queendiamonds" ]] && hand[1]=$queendiamonds
-[[ "${hand[1]}" == "kingdiamonds" ]] && hand[1]=$kingdiamonds
-[[ "${hand[1]}" == "acehearts" ]] && hand[1]=$acehearts
-[[ "${hand[1]}" == "twohearts" ]] && hand[1]=$twohearts
-[[ "${hand[1]}" == "threehearts" ]] && hand[1]=$threehearts
-[[ "${hand[1]}" == "fourhearts" ]] && hand[1]=$fourhearts
-[[ "${hand[1]}" == "fivehearts" ]] && hand[1]=$fivehearts
-[[ "${hand[1]}" == "sixhearts" ]] && hand[1]=$sixhearts
-[[ "${hand[1]}" == "sevenhearts" ]] && hand[1]=$sevenhearts
-[[ "${hand[1]}" == "eighthearts" ]] && hand[1]=$eighthearts
-[[ "${hand[1]}" == "ninehearts" ]] && hand[1]=$ninehearts
-[[ "${hand[1]}" == "tenhearts" ]] && hand[1]=$tenhearts
-[[ "${hand[1]}" == "jackhearts" ]] && hand[1]=$jackhearts
-[[ "${hand[1]}" == "queenhearts" ]] && hand[1]=$queenhearts
-[[ "${hand[1]}" == "kinghearts" ]] && hand[1]=$kinghearts
+		[[ "${hand[2]}" == "acespades" ]] && hand[2]=$acespades
+		[[ "${hand[2]}" == "twospades" ]] && hand[2]=$twospades
+		[[ "${hand[2]}" == "threespades" ]] && hand[2]=$threespades
+		[[ "${hand[2]}" == "fourspades" ]] && hand[2]=$fourspades
+		[[ "${hand[2]}" == "fivespades" ]] && hand[2]=$fivespades
+		[[ "${hand[2]}" == "sixspades" ]] && hand[2]=$sixspades
+		[[ "${hand[2]}" == "sevenspades" ]] && hand[2]=$sevenspades
+		[[ "${hand[2]}" == "eightspades" ]] && hand[2]=$eightspades
+		[[ "${hand[2]}" == "ninespades" ]] && hand[2]=$ninespades
+		[[ "${hand[2]}" == "tenspades" ]] && hand[2]=$tenspades
+		[[ "${hand[2]}" == "jackspades" ]] && hand[2]=$jackspades
+		[[ "${hand[2]}" == "queenspades" ]] && hand[2]=$queenspades
+		[[ "${hand[2]}" == "kingspades" ]] && hand[2]=$kingspades
+		[[ "${hand[2]}" == "aceclubs" ]] && hand[2]=$aceclubs
+		[[ "${hand[2]}" == "twoclubs" ]] && hand[2]=$twoclubs
+		[[ "${hand[2]}" == "threeclubs" ]] && hand[2]=$threeclubs
+		[[ "${hand[2]}" == "fourclubs" ]] && hand[2]=$fourclubs
+		[[ "${hand[2]}" == "fiveclubs" ]] && hand[2]=$fiveclubs
+		[[ "${hand[2]}" == "sixclubs" ]] && hand[2]=$sixclubs
+		[[ "${hand[2]}" == "sevenclubs" ]] && hand[2]=$sevenclubs
+		[[ "${hand[2]}" == "eightclubs" ]] && hand[2]=$eightclubs
+		[[ "${hand[2]}" == "nineclubs" ]] && hand[2]=$nineclubs
+		[[ "${hand[2]}" == "tenclubs" ]] && hand[2]=$tenclubs
+		[[ "${hand[2]}" == "jackclubs" ]] && hand[2]=$jackclubs
+		[[ "${hand[2]}" == "queenclubs" ]] && hand[2]=$queenclubs
+		[[ "${hand[2]}" == "kingclubs" ]] && hand[2]=$kingclubs
+		[[ "${hand[2]}" == "acediamonds" ]] && hand[2]=$acediamonds
+		[[ "${hand[2]}" == "twodiamonds" ]] && hand[2]=$twodiamonds
+		[[ "${hand[2]}" == "threediamonds" ]] && hand[2]=$threediamonds
+		[[ "${hand[2]}" == "fourdiamonds" ]] && hand[2]=$fourdiamonds
+		[[ "${hand[2]}" == "fivediamonds" ]] && hand[2]=$fivediamonds
+		[[ "${hand[2]}" == "sixdiamonds" ]] && hand[2]=$sixdiamonds
+		[[ "${hand[2]}" == "sevendiamonds" ]] && hand[2]=$sevendiamonds
+		[[ "${hand[2]}" == "eightdiamonds" ]] && hand[2]=$eightdiamonds
+		[[ "${hand[2]}" == "ninediamonds" ]] && hand[2]=$ninediamonds
+		[[ "${hand[2]}" == "tendiamonds" ]] && hand[2]=$tendiamonds
+		[[ "${hand[2]}" == "jackdiamonds" ]] && hand[2]=$jackdiamonds
+		[[ "${hand[2]}" == "queendiamonds" ]] && hand[2]=$queendiamonds
+		[[ "${hand[2]}" == "kingdiamonds" ]] && hand[2]=$kingdiamonds
+		[[ "${hand[2]}" == "acehearts" ]] && hand[2]=$acehearts
+		[[ "${hand[2]}" == "twohearts" ]] && hand[2]=$twohearts
+		[[ "${hand[2]}" == "threehearts" ]] && hand[2]=$threehearts
+		[[ "${hand[2]}" == "fourhearts" ]] && hand[2]=$fourhearts
+		[[ "${hand[2]}" == "fivehearts" ]] && hand[2]=$fivehearts
+		[[ "${hand[2]}" == "sixhearts" ]] && hand[2]=$sixhearts
+		[[ "${hand[2]}" == "sevenhearts" ]] && hand[2]=$sevenhearts
+		[[ "${hand[2]}" == "eighthearts" ]] && hand[2]=$eighthearts
+		[[ "${hand[2]}" == "ninehearts" ]] && hand[2]=$ninehearts
+		[[ "${hand[2]}" == "tenhearts" ]] && hand[2]=$tenhearts
+		[[ "${hand[2]}" == "jackhearts" ]] && hand[2]=$jackhearts
+		[[ "${hand[2]}" == "queenhearts" ]] && hand[2]=$queenhearts
+		[[ "${hand[2]}" == "kinghearts" ]] && hand[2]=$kinghearts
 
-[[ "${hand[2]}" == "acespades" ]] && hand[2]=$acespades
-[[ "${hand[2]}" == "twospades" ]] && hand[2]=$twospades
-[[ "${hand[2]}" == "threespades" ]] && hand[2]=$threespades
-[[ "${hand[2]}" == "fourspades" ]] && hand[2]=$fourspades
-[[ "${hand[2]}" == "fivespades" ]] && hand[2]=$fivespades
-[[ "${hand[2]}" == "sixspades" ]] && hand[2]=$sixspades
-[[ "${hand[2]}" == "sevenspades" ]] && hand[2]=$sevenspades
-[[ "${hand[2]}" == "eightspades" ]] && hand[2]=$eightspades
-[[ "${hand[2]}" == "ninespades" ]] && hand[2]=$ninespades
-[[ "${hand[2]}" == "tenspades" ]] && hand[2]=$tenspades
-[[ "${hand[2]}" == "jackspades" ]] && hand[2]=$jackspades
-[[ "${hand[2]}" == "queenspades" ]] && hand[2]=$queenspades
-[[ "${hand[2]}" == "kingspades" ]] && hand[2]=$kingspades
-[[ "${hand[2]}" == "aceclubs" ]] && hand[2]=$aceclubs
-[[ "${hand[2]}" == "twoclubs" ]] && hand[2]=$twoclubs
-[[ "${hand[2]}" == "threeclubs" ]] && hand[2]=$threeclubs
-[[ "${hand[2]}" == "fourclubs" ]] && hand[2]=$fourclubs
-[[ "${hand[2]}" == "fiveclubs" ]] && hand[2]=$fiveclubs
-[[ "${hand[2]}" == "sixclubs" ]] && hand[2]=$sixclubs
-[[ "${hand[2]}" == "sevenclubs" ]] && hand[2]=$sevenclubs
-[[ "${hand[2]}" == "eightclubs" ]] && hand[2]=$eightclubs
-[[ "${hand[2]}" == "nineclubs" ]] && hand[2]=$nineclubs
-[[ "${hand[2]}" == "tenclubs" ]] && hand[2]=$tenclubs
-[[ "${hand[2]}" == "jackclubs" ]] && hand[2]=$jackclubs
-[[ "${hand[2]}" == "queenclubs" ]] && hand[2]=$queenclubs
-[[ "${hand[2]}" == "kingclubs" ]] && hand[2]=$kingclubs
-[[ "${hand[2]}" == "acediamonds" ]] && hand[2]=$acediamonds
-[[ "${hand[2]}" == "twodiamonds" ]] && hand[2]=$twodiamonds
-[[ "${hand[2]}" == "threediamonds" ]] && hand[2]=$threediamonds
-[[ "${hand[2]}" == "fourdiamonds" ]] && hand[2]=$fourdiamonds
-[[ "${hand[2]}" == "fivediamonds" ]] && hand[2]=$fivediamonds
-[[ "${hand[2]}" == "sixdiamonds" ]] && hand[2]=$sixdiamonds
-[[ "${hand[2]}" == "sevendiamonds" ]] && hand[2]=$sevendiamonds
-[[ "${hand[2]}" == "eightdiamonds" ]] && hand[2]=$eightdiamonds
-[[ "${hand[2]}" == "ninediamonds" ]] && hand[2]=$ninediamonds
-[[ "${hand[2]}" == "tendiamonds" ]] && hand[2]=$tendiamonds
-[[ "${hand[2]}" == "jackdiamonds" ]] && hand[2]=$jackdiamonds
-[[ "${hand[2]}" == "queendiamonds" ]] && hand[2]=$queendiamonds
-[[ "${hand[2]}" == "kingdiamonds" ]] && hand[2]=$kingdiamonds
-[[ "${hand[2]}" == "acehearts" ]] && hand[2]=$acehearts
-[[ "${hand[2]}" == "twohearts" ]] && hand[2]=$twohearts
-[[ "${hand[2]}" == "threehearts" ]] && hand[2]=$threehearts
-[[ "${hand[2]}" == "fourhearts" ]] && hand[2]=$fourhearts
-[[ "${hand[2]}" == "fivehearts" ]] && hand[2]=$fivehearts
-[[ "${hand[2]}" == "sixhearts" ]] && hand[2]=$sixhearts
-[[ "${hand[2]}" == "sevenhearts" ]] && hand[2]=$sevenhearts
-[[ "${hand[2]}" == "eighthearts" ]] && hand[2]=$eighthearts
-[[ "${hand[2]}" == "ninehearts" ]] && hand[2]=$ninehearts
-[[ "${hand[2]}" == "tenhearts" ]] && hand[2]=$tenhearts
-[[ "${hand[2]}" == "jackhearts" ]] && hand[2]=$jackhearts
-[[ "${hand[2]}" == "queenhearts" ]] && hand[2]=$queenhearts
-[[ "${hand[2]}" == "kinghearts" ]] && hand[2]=$kinghearts
+		[[ "${hand[3]}" == "acespades" ]] && hand[3]=$acespades
+		[[ "${hand[3]}" == "twospades" ]] && hand[3]=$twospades
+		[[ "${hand[3]}" == "threespades" ]] && hand[3]=$threespades
+		[[ "${hand[3]}" == "fourspades" ]] && hand[3]=$fourspades
+		[[ "${hand[3]}" == "fivespades" ]] && hand[3]=$fivespades
+		[[ "${hand[3]}" == "sixspades" ]] && hand[3]=$sixspades
+		[[ "${hand[3]}" == "sevenspades" ]] && hand[3]=$sevenspades
+		[[ "${hand[3]}" == "eightspades" ]] && hand[3]=$eightspades
+		[[ "${hand[3]}" == "ninespades" ]] && hand[3]=$ninespades
+		[[ "${hand[3]}" == "tenspades" ]] && hand[3]=$tenspades
+		[[ "${hand[3]}" == "jackspades" ]] && hand[3]=$jackspades
+		[[ "${hand[3]}" == "queenspades" ]] && hand[3]=$queenspades
+		[[ "${hand[3]}" == "kingspades" ]] && hand[3]=$kingspades
+		[[ "${hand[3]}" == "aceclubs" ]] && hand[3]=$aceclubs
+		[[ "${hand[3]}" == "twoclubs" ]] && hand[3]=$twoclubs
+		[[ "${hand[3]}" == "threeclubs" ]] && hand[3]=$threeclubs
+		[[ "${hand[3]}" == "fourclubs" ]] && hand[3]=$fourclubs
+		[[ "${hand[3]}" == "fiveclubs" ]] && hand[3]=$fiveclubs
+		[[ "${hand[3]}" == "sixclubs" ]] && hand[3]=$sixclubs
+		[[ "${hand[3]}" == "sevenclubs" ]] && hand[3]=$sevenclubs
+		[[ "${hand[3]}" == "eightclubs" ]] && hand[3]=$eightclubs
+		[[ "${hand[3]}" == "nineclubs" ]] && hand[3]=$nineclubs
+		[[ "${hand[3]}" == "tenclubs" ]] && hand[3]=$tenclubs
+		[[ "${hand[3]}" == "jackclubs" ]] && hand[3]=$jackclubs
+		[[ "${hand[3]}" == "queenclubs" ]] && hand[3]=$queenclubs
+		[[ "${hand[3]}" == "kingclubs" ]] && hand[3]=$kingclubs
+		[[ "${hand[3]}" == "acediamonds" ]] && hand[3]=$acediamonds
+		[[ "${hand[3]}" == "twodiamonds" ]] && hand[3]=$twodiamonds
+		[[ "${hand[3]}" == "threediamonds" ]] && hand[3]=$threediamonds
+		[[ "${hand[3]}" == "fourdiamonds" ]] && hand[3]=$fourdiamonds
+		[[ "${hand[3]}" == "fivediamonds" ]] && hand[3]=$fivediamonds
+		[[ "${hand[3]}" == "sixdiamonds" ]] && hand[3]=$sixdiamonds
+		[[ "${hand[3]}" == "sevendiamonds" ]] && hand[3]=$sevendiamonds
+		[[ "${hand[3]}" == "eightdiamonds" ]] && hand[3]=$eightdiamonds
+		[[ "${hand[3]}" == "ninediamonds" ]] && hand[3]=$ninediamonds
+		[[ "${hand[3]}" == "tendiamonds" ]] && hand[3]=$tendiamonds
+		[[ "${hand[3]}" == "jackdiamonds" ]] && hand[3]=$jackdiamonds
+		[[ "${hand[3]}" == "queendiamonds" ]] && hand[3]=$queendiamonds
+		[[ "${hand[3]}" == "kingdiamonds" ]] && hand[3]=$kingdiamonds
+		[[ "${hand[3]}" == "acehearts" ]] && hand[3]=$acehearts
+		[[ "${hand[3]}" == "twohearts" ]] && hand[3]=$twohearts
+		[[ "${hand[3]}" == "threehearts" ]] && hand[3]=$threehearts
+		[[ "${hand[3]}" == "fourhearts" ]] && hand[3]=$fourhearts
+		[[ "${hand[3]}" == "fivehearts" ]] && hand[3]=$fivehearts
+		[[ "${hand[3]}" == "sixhearts" ]] && hand[3]=$sixhearts
+		[[ "${hand[3]}" == "sevenhearts" ]] && hand[3]=$sevenhearts
+		[[ "${hand[3]}" == "eighthearts" ]] && hand[3]=$eighthearts
+		[[ "${hand[3]}" == "ninehearts" ]] && hand[3]=$ninehearts
+		[[ "${hand[3]}" == "tenhearts" ]] && hand[3]=$tenhearts
+		[[ "${hand[3]}" == "jackhearts" ]] && hand[3]=$jackhearts
+		[[ "${hand[3]}" == "queenhearts" ]] && hand[3]=$queenhearts
+		[[ "${hand[3]}" == "kinghearts" ]] && hand[3]=$kinghearts
 
-[[ "${hand[3]}" == "acespades" ]] && hand[3]=$acespades
-[[ "${hand[3]}" == "twospades" ]] && hand[3]=$twospades
-[[ "${hand[3]}" == "threespades" ]] && hand[3]=$threespades
-[[ "${hand[3]}" == "fourspades" ]] && hand[3]=$fourspades
-[[ "${hand[3]}" == "fivespades" ]] && hand[3]=$fivespades
-[[ "${hand[3]}" == "sixspades" ]] && hand[3]=$sixspades
-[[ "${hand[3]}" == "sevenspades" ]] && hand[3]=$sevenspades
-[[ "${hand[3]}" == "eightspades" ]] && hand[3]=$eightspades
-[[ "${hand[3]}" == "ninespades" ]] && hand[3]=$ninespades
-[[ "${hand[3]}" == "tenspades" ]] && hand[3]=$tenspades
-[[ "${hand[3]}" == "jackspades" ]] && hand[3]=$jackspades
-[[ "${hand[3]}" == "queenspades" ]] && hand[3]=$queenspades
-[[ "${hand[3]}" == "kingspades" ]] && hand[3]=$kingspades
-[[ "${hand[3]}" == "aceclubs" ]] && hand[3]=$aceclubs
-[[ "${hand[3]}" == "twoclubs" ]] && hand[3]=$twoclubs
-[[ "${hand[3]}" == "threeclubs" ]] && hand[3]=$threeclubs
-[[ "${hand[3]}" == "fourclubs" ]] && hand[3]=$fourclubs
-[[ "${hand[3]}" == "fiveclubs" ]] && hand[3]=$fiveclubs
-[[ "${hand[3]}" == "sixclubs" ]] && hand[3]=$sixclubs
-[[ "${hand[3]}" == "sevenclubs" ]] && hand[3]=$sevenclubs
-[[ "${hand[3]}" == "eightclubs" ]] && hand[3]=$eightclubs
-[[ "${hand[3]}" == "nineclubs" ]] && hand[3]=$nineclubs
-[[ "${hand[3]}" == "tenclubs" ]] && hand[3]=$tenclubs
-[[ "${hand[3]}" == "jackclubs" ]] && hand[3]=$jackclubs
-[[ "${hand[3]}" == "queenclubs" ]] && hand[3]=$queenclubs
-[[ "${hand[3]}" == "kingclubs" ]] && hand[3]=$kingclubs
-[[ "${hand[3]}" == "acediamonds" ]] && hand[3]=$acediamonds
-[[ "${hand[3]}" == "twodiamonds" ]] && hand[3]=$twodiamonds
-[[ "${hand[3]}" == "threediamonds" ]] && hand[3]=$threediamonds
-[[ "${hand[3]}" == "fourdiamonds" ]] && hand[3]=$fourdiamonds
-[[ "${hand[3]}" == "fivediamonds" ]] && hand[3]=$fivediamonds
-[[ "${hand[3]}" == "sixdiamonds" ]] && hand[3]=$sixdiamonds
-[[ "${hand[3]}" == "sevendiamonds" ]] && hand[3]=$sevendiamonds
-[[ "${hand[3]}" == "eightdiamonds" ]] && hand[3]=$eightdiamonds
-[[ "${hand[3]}" == "ninediamonds" ]] && hand[3]=$ninediamonds
-[[ "${hand[3]}" == "tendiamonds" ]] && hand[3]=$tendiamonds
-[[ "${hand[3]}" == "jackdiamonds" ]] && hand[3]=$jackdiamonds
-[[ "${hand[3]}" == "queendiamonds" ]] && hand[3]=$queendiamonds
-[[ "${hand[3]}" == "kingdiamonds" ]] && hand[3]=$kingdiamonds
-[[ "${hand[3]}" == "acehearts" ]] && hand[3]=$acehearts
-[[ "${hand[3]}" == "twohearts" ]] && hand[3]=$twohearts
-[[ "${hand[3]}" == "threehearts" ]] && hand[3]=$threehearts
-[[ "${hand[3]}" == "fourhearts" ]] && hand[3]=$fourhearts
-[[ "${hand[3]}" == "fivehearts" ]] && hand[3]=$fivehearts
-[[ "${hand[3]}" == "sixhearts" ]] && hand[3]=$sixhearts
-[[ "${hand[3]}" == "sevenhearts" ]] && hand[3]=$sevenhearts
-[[ "${hand[3]}" == "eighthearts" ]] && hand[3]=$eighthearts
-[[ "${hand[3]}" == "ninehearts" ]] && hand[3]=$ninehearts
-[[ "${hand[3]}" == "tenhearts" ]] && hand[3]=$tenhearts
-[[ "${hand[3]}" == "jackhearts" ]] && hand[3]=$jackhearts
-[[ "${hand[3]}" == "queenhearts" ]] && hand[3]=$queenhearts
-[[ "${hand[3]}" == "kinghearts" ]] && hand[3]=$kinghearts
+		[[ "${hand[4]}" == "acespades" ]] && hand[4]=$acespades
+		[[ "${hand[4]}" == "twospades" ]] && hand[4]=$twospades
+		[[ "${hand[4]}" == "threespades" ]] && hand[4]=$threespades
+		[[ "${hand[4]}" == "fourspades" ]] && hand[4]=$fourspades
+		[[ "${hand[4]}" == "fivespades" ]] && hand[4]=$fivespades
+		[[ "${hand[4]}" == "sixspades" ]] && hand[4]=$sixspades
+		[[ "${hand[4]}" == "sevenspades" ]] && hand[4]=$sevenspades
+		[[ "${hand[4]}" == "eightspades" ]] && hand[4]=$eightspades
+		[[ "${hand[4]}" == "ninespades" ]] && hand[4]=$ninespades
+		[[ "${hand[4]}" == "tenspades" ]] && hand[4]=$tenspades
+		[[ "${hand[4]}" == "jackspades" ]] && hand[4]=$jackspades
+		[[ "${hand[4]}" == "queenspades" ]] && hand[4]=$queenspades
+		[[ "${hand[4]}" == "kingspades" ]] && hand[4]=$kingspades
+		[[ "${hand[4]}" == "aceclubs" ]] && hand[4]=$aceclubs
+		[[ "${hand[4]}" == "twoclubs" ]] && hand[4]=$twoclubs
+		[[ "${hand[4]}" == "threeclubs" ]] && hand[4]=$threeclubs
+		[[ "${hand[4]}" == "fourclubs" ]] && hand[4]=$fourclubs
+		[[ "${hand[4]}" == "fiveclubs" ]] && hand[4]=$fiveclubs
+		[[ "${hand[4]}" == "sixclubs" ]] && hand[4]=$sixclubs
+		[[ "${hand[4]}" == "sevenclubs" ]] && hand[4]=$sevenclubs
+		[[ "${hand[4]}" == "eightclubs" ]] && hand[4]=$eightclubs
+		[[ "${hand[4]}" == "nineclubs" ]] && hand[4]=$nineclubs
+		[[ "${hand[4]}" == "tenclubs" ]] && hand[4]=$tenclubs
+		[[ "${hand[4]}" == "jackclubs" ]] && hand[4]=$jackclubs
+		[[ "${hand[4]}" == "queenclubs" ]] && hand[4]=$queenclubs
+		[[ "${hand[4]}" == "kingclubs" ]] && hand[4]=$kingclubs
+		[[ "${hand[4]}" == "acediamonds" ]] && hand[4]=$acediamonds
+		[[ "${hand[4]}" == "twodiamonds" ]] && hand[4]=$twodiamonds
+		[[ "${hand[4]}" == "threediamonds" ]] && hand[4]=$threediamonds
+		[[ "${hand[4]}" == "fourdiamonds" ]] && hand[4]=$fourdiamonds
+		[[ "${hand[4]}" == "fivediamonds" ]] && hand[4]=$fivediamonds
+		[[ "${hand[4]}" == "sixdiamonds" ]] && hand[4]=$sixdiamonds
+		[[ "${hand[4]}" == "sevendiamonds" ]] && hand[4]=$sevendiamonds
+		[[ "${hand[4]}" == "eightdiamonds" ]] && hand[4]=$eightdiamonds
+		[[ "${hand[4]}" == "ninediamonds" ]] && hand[4]=$ninediamonds
+		[[ "${hand[4]}" == "tendiamonds" ]] && hand[4]=$tendiamonds
+		[[ "${hand[4]}" == "jackdiamonds" ]] && hand[4]=$jackdiamonds
+		[[ "${hand[4]}" == "queendiamonds" ]] && hand[4]=$queendiamonds
+		[[ "${hand[4]}" == "kingdiamonds" ]] && hand[4]=$kingdiamonds
+		[[ "${hand[4]}" == "acehearts" ]] && hand[4]=$acehearts
+		[[ "${hand[4]}" == "twohearts" ]] && hand[4]=$twohearts
+		[[ "${hand[4]}" == "threehearts" ]] && hand[4]=$threehearts
+		[[ "${hand[4]}" == "fourhearts" ]] && hand[4]=$fourhearts
+		[[ "${hand[4]}" == "fivehearts" ]] && hand[4]=$fivehearts
+		[[ "${hand[4]}" == "sixhearts" ]] && hand[4]=$sixhearts
+		[[ "${hand[4]}" == "sevenhearts" ]] && hand[4]=$sevenhearts
+		[[ "${hand[4]}" == "eighthearts" ]] && hand[4]=$eighthearts
+		[[ "${hand[4]}" == "ninehearts" ]] && hand[4]=$ninehearts
+		[[ "${hand[4]}" == "tenhearts" ]] && hand[4]=$tenhearts
+		[[ "${hand[4]}" == "jackhearts" ]] && hand[4]=$jackhearts
+		[[ "${hand[4]}" == "queenhearts" ]] && hand[4]=$queenhearts
+		[[ "${hand[4]}" == "kinghearts" ]] && hand[4]=$kinghearts
+	fi
 
-[[ "${hand[4]}" == "acespades" ]] && hand[4]=$acespades
-[[ "${hand[4]}" == "twospades" ]] && hand[4]=$twospades
-[[ "${hand[4]}" == "threespades" ]] && hand[4]=$threespades
-[[ "${hand[4]}" == "fourspades" ]] && hand[4]=$fourspades
-[[ "${hand[4]}" == "fivespades" ]] && hand[4]=$fivespades
-[[ "${hand[4]}" == "sixspades" ]] && hand[4]=$sixspades
-[[ "${hand[4]}" == "sevenspades" ]] && hand[4]=$sevenspades
-[[ "${hand[4]}" == "eightspades" ]] && hand[4]=$eightspades
-[[ "${hand[4]}" == "ninespades" ]] && hand[4]=$ninespades
-[[ "${hand[4]}" == "tenspades" ]] && hand[4]=$tenspades
-[[ "${hand[4]}" == "jackspades" ]] && hand[4]=$jackspades
-[[ "${hand[4]}" == "queenspades" ]] && hand[4]=$queenspades
-[[ "${hand[4]}" == "kingspades" ]] && hand[4]=$kingspades
-[[ "${hand[4]}" == "aceclubs" ]] && hand[4]=$aceclubs
-[[ "${hand[4]}" == "twoclubs" ]] && hand[4]=$twoclubs
-[[ "${hand[4]}" == "threeclubs" ]] && hand[4]=$threeclubs
-[[ "${hand[4]}" == "fourclubs" ]] && hand[4]=$fourclubs
-[[ "${hand[4]}" == "fiveclubs" ]] && hand[4]=$fiveclubs
-[[ "${hand[4]}" == "sixclubs" ]] && hand[4]=$sixclubs
-[[ "${hand[4]}" == "sevenclubs" ]] && hand[4]=$sevenclubs
-[[ "${hand[4]}" == "eightclubs" ]] && hand[4]=$eightclubs
-[[ "${hand[4]}" == "nineclubs" ]] && hand[4]=$nineclubs
-[[ "${hand[4]}" == "tenclubs" ]] && hand[4]=$tenclubs
-[[ "${hand[4]}" == "jackclubs" ]] && hand[4]=$jackclubs
-[[ "${hand[4]}" == "queenclubs" ]] && hand[4]=$queenclubs
-[[ "${hand[4]}" == "kingclubs" ]] && hand[4]=$kingclubs
-[[ "${hand[4]}" == "acediamonds" ]] && hand[4]=$acediamonds
-[[ "${hand[4]}" == "twodiamonds" ]] && hand[4]=$twodiamonds
-[[ "${hand[4]}" == "threediamonds" ]] && hand[4]=$threediamonds
-[[ "${hand[4]}" == "fourdiamonds" ]] && hand[4]=$fourdiamonds
-[[ "${hand[4]}" == "fivediamonds" ]] && hand[4]=$fivediamonds
-[[ "${hand[4]}" == "sixdiamonds" ]] && hand[4]=$sixdiamonds
-[[ "${hand[4]}" == "sevendiamonds" ]] && hand[4]=$sevendiamonds
-[[ "${hand[4]}" == "eightdiamonds" ]] && hand[4]=$eightdiamonds
-[[ "${hand[4]}" == "ninediamonds" ]] && hand[4]=$ninediamonds
-[[ "${hand[4]}" == "tendiamonds" ]] && hand[4]=$tendiamonds
-[[ "${hand[4]}" == "jackdiamonds" ]] && hand[4]=$jackdiamonds
-[[ "${hand[4]}" == "queendiamonds" ]] && hand[4]=$queendiamonds
-[[ "${hand[4]}" == "kingdiamonds" ]] && hand[4]=$kingdiamonds
-[[ "${hand[4]}" == "acehearts" ]] && hand[4]=$acehearts
-[[ "${hand[4]}" == "twohearts" ]] && hand[4]=$twohearts
-[[ "${hand[4]}" == "threehearts" ]] && hand[4]=$threehearts
-[[ "${hand[4]}" == "fourhearts" ]] && hand[4]=$fourhearts
-[[ "${hand[4]}" == "fivehearts" ]] && hand[4]=$fivehearts
-[[ "${hand[4]}" == "sixhearts" ]] && hand[4]=$sixhearts
-[[ "${hand[4]}" == "sevenhearts" ]] && hand[4]=$sevenhearts
-[[ "${hand[4]}" == "eighthearts" ]] && hand[4]=$eighthearts
-[[ "${hand[4]}" == "ninehearts" ]] && hand[4]=$ninehearts
-[[ "${hand[4]}" == "tenhearts" ]] && hand[4]=$tenhearts
-[[ "${hand[4]}" == "jackhearts" ]] && hand[4]=$jackhearts
-[[ "${hand[4]}" == "queenhearts" ]] && hand[4]=$queenhearts
-[[ "${hand[4]}" == "kinghearts" ]] && hand[4]=$kinghearts
+	[[ "$handzero" == "acespades" ]] && handzero=$acespades
+	[[ "$handzero" == "twospades" ]] && handzero=$twospades
+	[[ "$handzero" == "threespades" ]] && handzero=$threespades
+	[[ "$handzero" == "fourspades" ]] && handzero=$fourspades
+	[[ "$handzero" == "fivespades" ]] && handzero=$fivespades
+	[[ "$handzero" == "sixspades" ]] && handzero=$sixspades
+	[[ "$handzero" == "sevenspades" ]] && handzero=$sevenspades
+	[[ "$handzero" == "eightspades" ]] && handzero=$eightspades
+	[[ "$handzero" == "ninespades" ]] && handzero=$ninespades
+	[[ "$handzero" == "tenspades" ]] && handzero=$tenspades
+	[[ "$handzero" == "jackspades" ]] && handzero=$jackspades
+	[[ "$handzero" == "queenspades" ]] && handzero=$queenspades
+	[[ "$handzero" == "kingspades" ]] && handzero=$kingspades
+	[[ "$handzero" == "aceclubs" ]] && handzero=$aceclubs
+	[[ "$handzero" == "twoclubs" ]] && handzero=$twoclubs
+	[[ "$handzero" == "threeclubs" ]] && handzero=$threeclubs
+	[[ "$handzero" == "fourclubs" ]] && handzero=$fourclubs
+	[[ "$handzero" == "fiveclubs" ]] && handzero=$fiveclubs
+	[[ "$handzero" == "sixclubs" ]] && handzero=$sixclubs
+	[[ "$handzero" == "sevenclubs" ]] && handzero=$sevenclubs
+	[[ "$handzero" == "eightclubs" ]] && handzero=$eightclubs
+	[[ "$handzero" == "nineclubs" ]] && handzero=$nineclubs
+	[[ "$handzero" == "tenclubs" ]] && handzero=$tenclubs
+	[[ "$handzero" == "jackclubs" ]] && handzero=$jackclubs
+	[[ "$handzero" == "queenclubs" ]] && handzero=$queenclubs
+	[[ "$handzero" == "kingclubs" ]] && handzero=$kingclubs
+	[[ "$handzero" == "acediamonds" ]] && handzero=$acediamonds
+	[[ "$handzero" == "twodiamonds" ]] && handzero=$twodiamonds
+	[[ "$handzero" == "threediamonds" ]] && handzero=$threediamonds
+	[[ "$handzero" == "fourdiamonds" ]] && handzero=$fourdiamonds
+	[[ "$handzero" == "fivediamonds" ]] && handzero=$fivediamonds
+	[[ "$handzero" == "sixdiamonds" ]] && handzero=$sixdiamonds
+	[[ "$handzero" == "sevendiamonds" ]] && handzero=$sevendiamonds
+	[[ "$handzero" == "eightdiamonds" ]] && handzero=$eightdiamonds
+	[[ "$handzero" == "ninediamonds" ]] && handzero=$ninediamonds
+	[[ "$handzero" == "tendiamonds" ]] && handzero=$tendiamonds
+	[[ "$handzero" == "jackdiamonds" ]] && handzero=$jackdiamonds
+	[[ "$handzero" == "queendiamonds" ]] && handzero=$queendiamonds
+	[[ "$handzero" == "kingdiamonds" ]] && handzero=$kingdiamonds
+	[[ "$handzero" == "acehearts" ]] && handzero=$acehearts
+	[[ "$handzero" == "twohearts" ]] && handzero=$twohearts
+	[[ "$handzero" == "threehearts" ]] && handzero=$threehearts
+	[[ "$handzero" == "fourhearts" ]] && handzero=$fourhearts
+	[[ "$handzero" == "fivehearts" ]] && handzero=$fivehearts
+	[[ "$handzero" == "sixhearts" ]] && handzero=$sixhearts
+	[[ "$handzero" == "sevenhearts" ]] && handzero=$sevenhearts
+	[[ "$handzero" == "eighthearts" ]] && handzero=$eighthearts
+	[[ "$handzero" == "ninehearts" ]] && handzero=$ninehearts
+	[[ "$handzero" == "tenhearts" ]] && handzero=$tenhearts
+	[[ "$handzero" == "jackhearts" ]] && handzero=$jackhearts
+	[[ "$handzero" == "queenhearts" ]] && handzero=$queenhearts
+	[[ "$handzero" == "kinghearts" ]] && handzero=$kinghearts
+	[[ "$handone" == "acespades" ]] && handone=$acespades
+	[[ "$handone" == "twospades" ]] && handone=$twospades
+	[[ "$handone" == "threespades" ]] && handone=$threespades
+	[[ "$handone" == "fourspades" ]] && handone=$fourspades
+	[[ "$handone" == "fivespades" ]] && handone=$fivespades
+	[[ "$handone" == "sixspades" ]] && handone=$sixspades
+	[[ "$handone" == "sevenspades" ]] && handone=$sevenspades
+	[[ "$handone" == "eightspades" ]] && handone=$eightspades
+	[[ "$handone" == "ninespades" ]] && handone=$ninespades
+	[[ "$handone" == "tenspades" ]] && handone=$tenspades
+	[[ "$handone" == "jackspades" ]] && handone=$jackspades
+	[[ "$handone" == "queenspades" ]] && handone=$queenspades
+	[[ "$handone" == "kingspades" ]] && handone=$kingspades
+	[[ "$handone" == "aceclubs" ]] && handone=$aceclubs
+	[[ "$handone" == "twoclubs" ]] && handone=$twoclubs
+	[[ "$handone" == "threeclubs" ]] && handone=$threeclubs
+	[[ "$handone" == "fourclubs" ]] && handone=$fourclubs
+	[[ "$handone" == "fiveclubs" ]] && handone=$fiveclubs
+	[[ "$handone" == "sixclubs" ]] && handone=$sixclubs
+	[[ "$handone" == "sevenclubs" ]] && handone=$sevenclubs
+	[[ "$handone" == "eightclubs" ]] && handone=$eightclubs
+	[[ "$handone" == "nineclubs" ]] && handone=$nineclubs
+	[[ "$handone" == "tenclubs" ]] && handone=$tenclubs
+	[[ "$handone" == "jackclubs" ]] && handone=$jackclubs
+	[[ "$handone" == "queenclubs" ]] && handone=$queenclubs
+	[[ "$handone" == "kingclubs" ]] && handone=$kingclubs
+	[[ "$handone" == "acediamonds" ]] && handone=$acediamonds
+	[[ "$handone" == "twodiamonds" ]] && handone=$twodiamonds
+	[[ "$handone" == "threediamonds" ]] && handone=$threediamonds
+	[[ "$handone" == "fourdiamonds" ]] && handone=$fourdiamonds
+	[[ "$handone" == "fivediamonds" ]] && handone=$fivediamonds
+	[[ "$handone" == "sixdiamonds" ]] && handone=$sixdiamonds
+	[[ "$handone" == "sevendiamonds" ]] && handone=$sevendiamonds
+	[[ "$handone" == "eightdiamonds" ]] && handone=$eightdiamonds
+	[[ "$handone" == "ninediamonds" ]] && handone=$ninediamonds
+	[[ "$handone" == "tendiamonds" ]] && handone=$tendiamonds
+	[[ "$handone" == "jackdiamonds" ]] && handone=$jackdiamonds
+	[[ "$handone" == "queendiamonds" ]] && handone=$queendiamonds
+	[[ "$handone" == "kingdiamonds" ]] && handone=$kingdiamonds
+	[[ "$handone" == "acehearts" ]] && handone=$acehearts
+	[[ "$handone" == "twohearts" ]] && handone=$twohearts
+	[[ "$handone" == "threehearts" ]] && handone=$threehearts
+	[[ "$handone" == "fourhearts" ]] && handone=$fourhearts
+	[[ "$handone" == "fivehearts" ]] && handone=$fivehearts
+	[[ "$handone" == "sixhearts" ]] && handone=$sixhearts
+	[[ "$handone" == "sevenhearts" ]] && handone=$sevenhearts
+	[[ "$handone" == "eighthearts" ]] && handone=$eighthearts
+	[[ "$handone" == "ninehearts" ]] && handone=$ninehearts
+	[[ "$handone" == "tenhearts" ]] && handone=$tenhearts
+	[[ "$handone" == "jackhearts" ]] && handone=$jackhearts
+	[[ "$handone" == "queenhearts" ]] && handone=$queenhearts
+	[[ "$handone" == "kinghearts" ]] && handone=$kinghearts
+	[[ "$handone" == "acespades" ]] && handone=$acespades
+	[[ "$handone" == "twospades" ]] && handone=$twospades
+	[[ "$handone" == "threespades" ]] && handone=$threespades
+	[[ "$handone" == "fourspades" ]] && handone=$fourspades
+	[[ "$handone" == "fivespades" ]] && handone=$fivespades
+	[[ "$handone" == "sixspades" ]] && handone=$sixspades
+	[[ "$handone" == "sevenspades" ]] && handone=$sevenspades
+	[[ "$handone" == "eightspades" ]] && handone=$eightspades
+	[[ "$handone" == "ninespades" ]] && handone=$ninespades
+	[[ "$handone" == "tenspades" ]] && handone=$tenspades
+	[[ "$handone" == "jackspades" ]] && handone=$jackspades
+	[[ "$handone" == "queenspades" ]] && handone=$queenspades
+	[[ "$handone" == "kingspades" ]] && handone=$kingspades
+	[[ "$handone" == "aceclubs" ]] && handone=$aceclubs
+	[[ "$handone" == "twoclubs" ]] && handone=$twoclubs
+	[[ "$handone" == "threeclubs" ]] && handone=$threeclubs
+	[[ "$handone" == "fourclubs" ]] && handone=$fourclubs
+	[[ "$handone" == "fiveclubs" ]] && handone=$fiveclubs
+	[[ "$handone" == "sixclubs" ]] && handone=$sixclubs
+	[[ "$handone" == "sevenclubs" ]] && handone=$sevenclubs
+	[[ "$handone" == "eightclubs" ]] && handone=$eightclubs
+	[[ "$handone" == "nineclubs" ]] && handone=$nineclubs
+	[[ "$handone" == "tenclubs" ]] && handone=$tenclubs
+	[[ "$handone" == "jackclubs" ]] && handone=$jackclubs
+	[[ "$handone" == "queenclubs" ]] && handone=$queenclubs
+	[[ "$handone" == "kingclubs" ]] && handone=$kingclubs
+	[[ "$handone" == "acediamonds" ]] && handone=$acediamonds
+	[[ "$handone" == "twodiamonds" ]] && handone=$twodiamonds
+	[[ "$handone" == "threediamonds" ]] && handone=$threediamonds
+	[[ "$handone" == "fourdiamonds" ]] && handone=$fourdiamonds
+	[[ "$handone" == "fivediamonds" ]] && handone=$fivediamonds
+	[[ "$handone" == "sixdiamonds" ]] && handone=$sixdiamonds
+	[[ "$handone" == "sevendiamonds" ]] && handone=$sevendiamonds
+	[[ "$handone" == "eightdiamonds" ]] && handone=$eightdiamonds
+	[[ "$handone" == "ninediamonds" ]] && handone=$ninediamonds
+	[[ "$handone" == "tendiamonds" ]] && handone=$tendiamonds
+	[[ "$handone" == "jackdiamonds" ]] && handone=$jackdiamonds
+	[[ "$handone" == "queendiamonds" ]] && handone=$queendiamonds
+	[[ "$handone" == "kingdiamonds" ]] && handone=$kingdiamonds
+	[[ "$handone" == "acehearts" ]] && handone=$acehearts
+	[[ "$handone" == "twohearts" ]] && handone=$twohearts
+	[[ "$handone" == "threehearts" ]] && handone=$threehearts
+	[[ "$handone" == "fourhearts" ]] && handone=$fourhearts
+	[[ "$handone" == "fivehearts" ]] && handone=$fivehearts
+	[[ "$handone" == "sixhearts" ]] && handone=$sixhearts
+	[[ "$handone" == "sevenhearts" ]] && handone=$sevenhearts
+	[[ "$handone" == "eighthearts" ]] && handone=$eighthearts
+	[[ "$handone" == "ninehearts" ]] && handone=$ninehearts
+	[[ "$handone" == "tenhearts" ]] && handone=$tenhearts
+	[[ "$handone" == "jackhearts" ]] && handone=$jackhearts
+	[[ "$handone" == "queenhearts" ]] && handone=$queenhearts
+	[[ "$handone" == "kinghearts" ]] && handone=$kinghearts
 
-[[ "${hand[5]}" == "acespades" ]] && hand[5]=$acespades
-[[ "${hand[5]}" == "twospades" ]] && hand[5]=$twospades
-[[ "${hand[5]}" == "threespades" ]] && hand[5]=$threespades
-[[ "${hand[5]}" == "fourspades" ]] && hand[5]=$fourspades
-[[ "${hand[5]}" == "fivespades" ]] && hand[5]=$fivespades
-[[ "${hand[5]}" == "sixspades" ]] && hand[5]=$sixspades
-[[ "${hand[5]}" == "sevenspades" ]] && hand[5]=$sevenspades
-[[ "${hand[5]}" == "eightspades" ]] && hand[5]=$eightspades
-[[ "${hand[5]}" == "ninespades" ]] && hand[5]=$ninespades
-[[ "${hand[5]}" == "tenspades" ]] && hand[5]=$tenspades
-[[ "${hand[5]}" == "jackspades" ]] && hand[5]=$jackspades
-[[ "${hand[5]}" == "queenspades" ]] && hand[5]=$queenspades
-[[ "${hand[5]}" == "kingspades" ]] && hand[5]=$kingspades
-[[ "${hand[5]}" == "aceclubs" ]] && hand[5]=$aceclubs
-[[ "${hand[5]}" == "twoclubs" ]] && hand[5]=$twoclubs
-[[ "${hand[5]}" == "threeclubs" ]] && hand[5]=$threeclubs
-[[ "${hand[5]}" == "fourclubs" ]] && hand[5]=$fourclubs
-[[ "${hand[5]}" == "fiveclubs" ]] && hand[5]=$fiveclubs
-[[ "${hand[5]}" == "sixclubs" ]] && hand[5]=$sixclubs
-[[ "${hand[5]}" == "sevenclubs" ]] && hand[5]=$sevenclubs
-[[ "${hand[5]}" == "eightclubs" ]] && hand[5]=$eightclubs
-[[ "${hand[5]}" == "nineclubs" ]] && hand[5]=$nineclubs
-[[ "${hand[5]}" == "tenclubs" ]] && hand[5]=$tenclubs
-[[ "${hand[5]}" == "jackclubs" ]] && hand[5]=$jackclubs
-[[ "${hand[5]}" == "queenclubs" ]] && hand[5]=$queenclubs
-[[ "${hand[5]}" == "kingclubs" ]] && hand[5]=$kingclubs
-[[ "${hand[5]}" == "acediamonds" ]] && hand[5]=$acediamonds
-[[ "${hand[5]}" == "twodiamonds" ]] && hand[5]=$twodiamonds
-[[ "${hand[5]}" == "threediamonds" ]] && hand[5]=$threediamonds
-[[ "${hand[5]}" == "fourdiamonds" ]] && hand[5]=$fourdiamonds
-[[ "${hand[5]}" == "fivediamonds" ]] && hand[5]=$fivediamonds
-[[ "${hand[5]}" == "sixdiamonds" ]] && hand[5]=$sixdiamonds
-[[ "${hand[5]}" == "sevendiamonds" ]] && hand[5]=$sevendiamonds
-[[ "${hand[5]}" == "eightdiamonds" ]] && hand[5]=$eightdiamonds
-[[ "${hand[5]}" == "ninediamonds" ]] && hand[5]=$ninediamonds
-[[ "${hand[5]}" == "tendiamonds" ]] && hand[5]=$tendiamonds
-[[ "${hand[5]}" == "jackdiamonds" ]] && hand[5]=$jackdiamonds
-[[ "${hand[5]}" == "queendiamonds" ]] && hand[5]=$queendiamonds
-[[ "${hand[5]}" == "kingdiamonds" ]] && hand[5]=$kingdiamonds
-[[ "${hand[5]}" == "acehearts" ]] && hand[5]=$acehearts
-[[ "${hand[5]}" == "twohearts" ]] && hand[5]=$twohearts
-[[ "${hand[5]}" == "threehearts" ]] && hand[5]=$threehearts
-[[ "${hand[5]}" == "fourhearts" ]] && hand[5]=$fourhearts
-[[ "${hand[5]}" == "fivehearts" ]] && hand[5]=$fivehearts
-[[ "${hand[5]}" == "sixhearts" ]] && hand[5]=$sixhearts
-[[ "${hand[5]}" == "sevenhearts" ]] && hand[5]=$sevenhearts
-[[ "${hand[5]}" == "eighthearts" ]] && hand[5]=$eighthearts
-[[ "${hand[5]}" == "ninehearts" ]] && hand[5]=$ninehearts
-[[ "${hand[5]}" == "tenhearts" ]] && hand[5]=$tenhearts
-[[ "${hand[5]}" == "jackhearts" ]] && hand[5]=$jackhearts
-[[ "${hand[5]}" == "queenhearts" ]] && hand[5]=$queenhearts
-[[ "${hand[5]}" == "kinghearts" ]] && hand[5]=$kinghearts
+	[[ "$handtwo" == "acespades" ]] && handtwo=$acespades
+	[[ "$handtwo" == "twospades" ]] && handtwo=$twospades
+	[[ "$handtwo" == "threespades" ]] && handtwo=$threespades
+	[[ "$handtwo" == "fourspades" ]] && handtwo=$fourspades
+	[[ "$handtwo" == "fivespades" ]] && handtwo=$fivespades
+	[[ "$handtwo" == "sixspades" ]] && handtwo=$sixspades
+	[[ "$handtwo" == "sevenspades" ]] && handtwo=$sevenspades
+	[[ "$handtwo" == "eightspades" ]] && handtwo=$eightspades
+	[[ "$handtwo" == "ninespades" ]] && handtwo=$ninespades
+	[[ "$handtwo" == "tenspades" ]] && handtwo=$tenspades
+	[[ "$handtwo" == "jackspades" ]] && handtwo=$jackspades
+	[[ "$handtwo" == "queenspades" ]] && handtwo=$queenspades
+	[[ "$handtwo" == "kingspades" ]] && handtwo=$kingspades
+	[[ "$handtwo" == "aceclubs" ]] && handtwo=$aceclubs
+	[[ "$handtwo" == "twoclubs" ]] && handtwo=$twoclubs
+	[[ "$handtwo" == "threeclubs" ]] && handtwo=$threeclubs
+	[[ "$handtwo" == "fourclubs" ]] && handtwo=$fourclubs
+	[[ "$handtwo" == "fiveclubs" ]] && handtwo=$fiveclubs
+	[[ "$handtwo" == "sixclubs" ]] && handtwo=$sixclubs
+	[[ "$handtwo" == "sevenclubs" ]] && handtwo=$sevenclubs
+	[[ "$handtwo" == "eightclubs" ]] && handtwo=$eightclubs
+	[[ "$handtwo" == "nineclubs" ]] && handtwo=$nineclubs
+	[[ "$handtwo" == "tenclubs" ]] && handtwo=$tenclubs
+	[[ "$handtwo" == "jackclubs" ]] && handtwo=$jackclubs
+	[[ "$handtwo" == "queenclubs" ]] && handtwo=$queenclubs
+	[[ "$handtwo" == "kingclubs" ]] && handtwo=$kingclubs
+	[[ "$handtwo" == "acediamonds" ]] && handtwo=$acediamonds
+	[[ "$handtwo" == "twodiamonds" ]] && handtwo=$twodiamonds
+	[[ "$handtwo" == "threediamonds" ]] && handtwo=$threediamonds
+	[[ "$handtwo" == "fourdiamonds" ]] && handtwo=$fourdiamonds
+	[[ "$handtwo" == "fivediamonds" ]] && handtwo=$fivediamonds
+	[[ "$handtwo" == "sixdiamonds" ]] && handtwo=$sixdiamonds
+	[[ "$handtwo" == "sevendiamonds" ]] && handtwo=$sevendiamonds
+	[[ "$handtwo" == "eightdiamonds" ]] && handtwo=$eightdiamonds
+	[[ "$handtwo" == "ninediamonds" ]] && handtwo=$ninediamonds
+	[[ "$handtwo" == "tendiamonds" ]] && handtwo=$tendiamonds
+	[[ "$handtwo" == "jackdiamonds" ]] && handtwo=$jackdiamonds
+	[[ "$handtwo" == "queendiamonds" ]] && handtwo=$queendiamonds
+	[[ "$handtwo" == "kingdiamonds" ]] && handtwo=$kingdiamonds
+	[[ "$handtwo" == "acehearts" ]] && handtwo=$acehearts
+	[[ "$handtwo" == "twohearts" ]] && handtwo=$twohearts
+	[[ "$handtwo" == "threehearts" ]] && handtwo=$threehearts
+	[[ "$handtwo" == "fourhearts" ]] && handtwo=$fourhearts
+	[[ "$handtwo" == "fivehearts" ]] && handtwo=$fivehearts
+	[[ "$handtwo" == "sixhearts" ]] && handtwo=$sixhearts
+	[[ "$handtwo" == "sevenhearts" ]] && handtwo=$sevenhearts
+	[[ "$handtwo" == "eighthearts" ]] && handtwo=$eighthearts
+	[[ "$handtwo" == "ninehearts" ]] && handtwo=$ninehearts
+	[[ "$handtwo" == "tenhearts" ]] && handtwo=$tenhearts
+	[[ "$handtwo" == "jackhearts" ]] && handtwo=$jackhearts
+	[[ "$handtwo" == "queenhearts" ]] && handtwo=$queenhearts
+	[[ "$handtwo" == "kinghearts" ]] && handtwo=$kinghearts
 
+	[[ "$handthree" == "acespades" ]] && handthree=$acespades
+	[[ "$handthree" == "twospades" ]] && handthree=$twospades
+	[[ "$handthree" == "threespades" ]] && handthree=$threespades
+	[[ "$handthree" == "fourspades" ]] && handthree=$fourspades
+	[[ "$handthree" == "fivespades" ]] && handthree=$fivespades
+	[[ "$handthree" == "sixspades" ]] && handthree=$sixspades
+	[[ "$handthree" == "sevenspades" ]] && handthree=$sevenspades
+	[[ "$handthree" == "eightspades" ]] && handthree=$eightspades
+	[[ "$handthree" == "ninespades" ]] && handthree=$ninespades
+	[[ "$handthree" == "tenspades" ]] && handthree=$tenspades
+	[[ "$handthree" == "jackspades" ]] && handthree=$jackspades
+	[[ "$handthree" == "queenspades" ]] && handthree=$queenspades
+	[[ "$handthree" == "kingspades" ]] && handthree=$kingspades
+	[[ "$handthree" == "aceclubs" ]] && handthree=$aceclubs
+	[[ "$handthree" == "twoclubs" ]] && handthree=$twoclubs
+	[[ "$handthree" == "threeclubs" ]] && handthree=$threeclubs
+	[[ "$handthree" == "fourclubs" ]] && handthree=$fourclubs
+	[[ "$handthree" == "fiveclubs" ]] && handthree=$fiveclubs
+	[[ "$handthree" == "sixclubs" ]] && handthree=$sixclubs
+	[[ "$handthree" == "sevenclubs" ]] && handthree=$sevenclubs
+	[[ "$handthree" == "eightclubs" ]] && handthree=$eightclubs
+	[[ "$handthree" == "nineclubs" ]] && handthree=$nineclubs
+	[[ "$handthree" == "tenclubs" ]] && handthree=$tenclubs
+	[[ "$handthree" == "jackclubs" ]] && handthree=$jackclubs
+	[[ "$handthree" == "queenclubs" ]] && handthree=$queenclubs
+	[[ "$handthree" == "kingclubs" ]] && handthree=$kingclubs
+	[[ "$handthree" == "acediamonds" ]] && handthree=$acediamonds
+	[[ "$handthree" == "twodiamonds" ]] && handthree=$twodiamonds
+	[[ "$handthree" == "threediamonds" ]] && handthree=$threediamonds
+	[[ "$handthree" == "fourdiamonds" ]] && handthree=$fourdiamonds
+	[[ "$handthree" == "fivediamonds" ]] && handthree=$fivediamonds
+	[[ "$handthree" == "sixdiamonds" ]] && handthree=$sixdiamonds
+	[[ "$handthree" == "sevendiamonds" ]] && handthree=$sevendiamonds
+	[[ "$handthree" == "eightdiamonds" ]] && handthree=$eightdiamonds
+	[[ "$handthree" == "ninediamonds" ]] && handthree=$ninediamonds
+	[[ "$handthree" == "tendiamonds" ]] && handthree=$tendiamonds
+	[[ "$handthree" == "jackdiamonds" ]] && handthree=$jackdiamonds
+	[[ "$handthree" == "queendiamonds" ]] && handthree=$queendiamonds
+	[[ "$handthree" == "kingdiamonds" ]] && handthree=$kingdiamonds
+	[[ "$handthree" == "acehearts" ]] && handthree=$acehearts
+	[[ "$handthree" == "twohearts" ]] && handthree=$twohearts
+	[[ "$handthree" == "threehearts" ]] && handthree=$threehearts
+	[[ "$handthree" == "fourhearts" ]] && handthree=$fourhearts
+	[[ "$handthree" == "fivehearts" ]] && handthree=$fivehearts
+	[[ "$handthree" == "sixhearts" ]] && handthree=$sixhearts
+	[[ "$handthree" == "sevenhearts" ]] && handthree=$sevenhearts
+	[[ "$handthree" == "eighthearts" ]] && handthree=$eighthearts
+	[[ "$handthree" == "ninehearts" ]] && handthree=$ninehearts
+	[[ "$handthree" == "tenhearts" ]] && handthree=$tenhearts
+	[[ "$handthree" == "jackhearts" ]] && handthree=$jackhearts
+	[[ "$handthree" == "queenhearts" ]] && handthree=$queenhearts
+	[[ "$handthree" == "kinghearts" ]] && handthree=$kinghearts
+	[[ "$handfour" == "acespades" ]] && handfour=$acespades
+	[[ "$handfour" == "twospades" ]] && handfour=$twospades
+	[[ "$handfour" == "threespades" ]] && handfour=$threespades
+	[[ "$handfour" == "fourspades" ]] && handfour=$fourspades
+	[[ "$handfour" == "fivespades" ]] && handfour=$fivespades
+	[[ "$handfour" == "sixspades" ]] && handfour=$sixspades
+	[[ "$handfour" == "sevenspades" ]] && handfour=$sevenspades
+	[[ "$handfour" == "eightspades" ]] && handfour=$eightspades
+	[[ "$handfour" == "ninespades" ]] && handfour=$ninespades
+	[[ "$handfour" == "tenspades" ]] && handfour=$tenspades
+	[[ "$handfour" == "jackspades" ]] && handfour=$jackspades
+	[[ "$handfour" == "queenspades" ]] && handfour=$queenspades
+	[[ "$handfour" == "kingspades" ]] && handfour=$kingspades
+	[[ "$handfour" == "aceclubs" ]] && handfour=$aceclubs
+	[[ "$handfour" == "twoclubs" ]] && handfour=$twoclubs
+	[[ "$handfour" == "threeclubs" ]] && handfour=$threeclubs
+	[[ "$handfour" == "fourclubs" ]] && handfour=$fourclubs
+	[[ "$handfour" == "fiveclubs" ]] && handfour=$fiveclubs
+	[[ "$handfour" == "sixclubs" ]] && handfour=$sixclubs
+	[[ "$handfour" == "sevenclubs" ]] && handfour=$sevenclubs
+	[[ "$handfour" == "eightclubs" ]] && handfour=$eightclubs
+	[[ "$handfour" == "nineclubs" ]] && handfour=$nineclubs
+	[[ "$handfour" == "tenclubs" ]] && handfour=$tenclubs
+	[[ "$handfour" == "jackclubs" ]] && handfour=$jackclubs
+	[[ "$handfour" == "queenclubs" ]] && handfour=$queenclubs
+	[[ "$handfour" == "kingclubs" ]] && handfour=$kingclubs
+	[[ "$handfour" == "acediamonds" ]] && handfour=$acediamonds
+	[[ "$handfour" == "twodiamonds" ]] && handfour=$twodiamonds
+	[[ "$handfour" == "threediamonds" ]] && handfour=$threediamonds
+	[[ "$handfour" == "fourdiamonds" ]] && handfour=$fourdiamonds
+	[[ "$handfour" == "fivediamonds" ]] && handfour=$fivediamonds
+	[[ "$handfour" == "sixdiamonds" ]] && handfour=$sixdiamonds
+	[[ "$handfour" == "sevendiamonds" ]] && handfour=$sevendiamonds
+	[[ "$handfour" == "eightdiamonds" ]] && handfour=$eightdiamonds
+	[[ "$handfour" == "ninediamonds" ]] && handfour=$ninediamonds
+	[[ "$handfour" == "tendiamonds" ]] && handfour=$tendiamonds
+	[[ "$handfour" == "jackdiamonds" ]] && handfour=$jackdiamonds
+	[[ "$handfour" == "queendiamonds" ]] && handfour=$queendiamonds
+	[[ "$handfour" == "kingdiamonds" ]] && handfour=$kingdiamonds
+	[[ "$handfour" == "acehearts" ]] && handfour=$acehearts
+	[[ "$handfour" == "twohearts" ]] && handfour=$twohearts
+	[[ "$handfour" == "threehearts" ]] && handfour=$threehearts
+	[[ "$handfour" == "fourhearts" ]] && handfour=$fourhearts
+	[[ "$handfour" == "fivehearts" ]] && handfour=$fivehearts
+	[[ "$handfour" == "sixhearts" ]] && handfour=$sixhearts
+	[[ "$handfour" == "sevenhearts" ]] && handfour=$sevenhearts
+	[[ "$handfour" == "eighthearts" ]] && handfour=$eighthearts
+	[[ "$handfour" == "ninehearts" ]] && handfour=$ninehearts
+	[[ "$handfour" == "tenhearts" ]] && handfour=$tenhearts
+	[[ "$handfour" == "jackhearts" ]] && handfour=$jackhearts
+	[[ "$handfour" == "queenhearts" ]] && handfour=$queenhearts
+	[[ "$handfour" == "kinghearts" ]] && handfour=$kinghearts
 
-##printf "1""${display[0]}""${hand[0]}""2""${display[1]}""${hand[1]}""3""${display[2]}""${hand[2]}""4""${display[3]}""${hand[3]}""5""${display[4]}""${hand[4]}"
-HIT=
-WHITE=$(echo -e "\033[1;37m$HIT\033[0m")
-paste -d" " <(printf %s "1") <(printf %s "${display[0]}") <(printf %s "${hand[0]}") <(printf %s "$WHITE") <(printf %s "2") <(printf %s "${display[1]}") <(printf %s "${hand[1]}") <(printf %s "$WHITE") <(printf %s "3") <(printf %s "${display[2]}") <(printf %s "${hand[2]}") <(printf %s "$WHITE") <(printf %s "4") <(printf %s "${display[3]}") <(printf %s "${hand[3]}") <(printf %s "$WHITE") <(printf %s "5") <(printf %s "${display[4]}") <(printf %s "${hand[4]}") <(printf %s "$WHITE") 
+	one="1"
+	two="2"
+	three="3"
+	four="4"
+	five="5"
+	##BLACK='\e[1;36m'
+	##RED='\e[0;31m'
+	##printf "1""${display[0]}""${hand[0]}""2""${display[1]}""${hand[1]}""3""${display[2]}""${hand[2]}""4""${display[3]}""${hand[3]}""5""${display[4]}""${hand[4]}"
+	##HIT=
+	##WHITE=$(echo -e "$HIT\033[0m")
+	##WHITE=$(echo -e "\033[0;37m\033[0m")
+	##paste -d" " <(printf %s "1") <(printf %s "${display[0]}") <(printf %s "${hand[0]}") <(printf %s "$WHITE") <(printf %s "2") <(printf %s "${display[1]}") <(printf %s "${hand[1]}") <(printf %s "$WHITE") <(printf %s "3") <(printf %s "${display[2]}") <(printf %s "${hand[2]}") <(printf %s "$WHITE") <(printf %s "4") <(printf %s "${display[3]}") <(printf %s "${hand[3]}") <(printf %s "$WHITE") <(printf %s "5") <(printf %s "${display[4]}") <(printf %s "${hand[4]}") <(printf %s "$WHITE")
+	##paste -d" " <(printf %s "1") <(printf %s "${display[0]}") <(printf %s "$WHITE") <(printf %s "${hand[0]}") <(printf %s "2") <(printf %s "${display[1]}") <(printf %s "$WHITE") <(printf %s "${hand[1]}") <(printf %s "3") <(printf %s "${display[2]}") <(printf %s "$WHITE") <(printf %s "${hand[2]}") <(printf %s "4") <(printf %s "${display[3]}") <(printf %s "$WHITE") <(printf %s "${hand[3]}") <(printf %s "5") <(printf %s "${display[4]}") <(printf %s "$WHITE") <(printf %s "${hand[4]}")
+	##paste -d" " <(printf %s "$default$one") <(printf %s "$default${display[0]}") <(printf %s "${hand[0]}") <(printf %s "$default$two") <(printf %s "$default${display[1]}") <(printf %s "${hand[1]}") <(printf %s "$default$three") <(printf %s "$default${display[2]}") <(printf %s "${hand[2]}") <(printf %s "$default$four") <(printf %s "$default${display[3]}") <(printf %s "${hand[3]}") <(printf %s "$default$five") <(printf %s "$default${display[4]}") <(printf %s "${hand[4]}")
+
+	paste -d" " <(printf %s "$default$one") <(printf %s "$default${display[0]}") <(printf %s "$handzero") <(printf %s "$default$two") <(printf %s "$default${display[1]}") <(printf %s "$handone") <(printf %s "$default$three") <(printf %s "$default${display[2]}") <(printf %s "$handtwo") <(printf %s "$default$four") <(printf %s "$default${display[3]}") <(printf %s "$handthree") <(printf %s "$default$five") <(printf %s "$default${display[4]}") <(printf %s "$handfour")
+
+	printf %s "$default"
 
 }
 
@@ -1653,7 +1988,7 @@ play() {
 
 	mull
 
-	##	mchand[0]="${library[0]}"
+	##	mchand[0]="${library[25]}"
 	##	mchand[1]="${library[13]}"
 	##	mchand[2]="${library[14]}"
 	##	mchand[3]="${library[15]}"
